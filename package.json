@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --output-path docs --base-href /1000goals/ ",
+    "make404":"./create404.sh",
+    "build-4-deploy":"npm run build && npm run make404",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
