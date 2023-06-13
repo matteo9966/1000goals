@@ -1,0 +1,20 @@
+@use "../../../style/mixins" as m;
+.primary {
+  background-color: #141414;
+  border: 1px solid rgba(146, 146, 146, 0.6);
+  font-weight: 400;
+  position: relative;
+  outline: none;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 45px;
+  width: 130px;
+  opacity: 1;
+  padding:0.5rem;
+  color:var(--primary-alt);
+  @include m.global-font;
+  @include m.font-medium;
+}

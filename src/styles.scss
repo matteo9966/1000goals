@@ -1,1 +1,12 @@
+@import 'normalize.css';
 /* You can add global styles to this file, and also import other style files */
+html {
+    /* 62.5% of 16px browser font size is 10px */
+    font-size: 62.5%;
+  }
+
+
+
+:root{
+    --primary-alt:#ffffffcc;
+}

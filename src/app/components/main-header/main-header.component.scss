@@ -1,0 +1,24 @@
+@use "../../../style/mixins" as m;
+.main-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  fill: white;
+  color: var(--primary-alt);
+  text-align: center;
+  @include m.global-font;
+  img {
+    width: 20%;
+  }
+  .slogan {
+    text-transform: capitalize;
+    @include m.font-medium;
+  }
+
+  .good-luck {
+    @include m.font-big;
+  }
+
+}
