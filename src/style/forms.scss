@@ -1,0 +1,12 @@
+.inputs-area{
+    display: flex;
+    flex-direction: column;
+    gap:4.5rem;
+}
+
+.buttons-area{
+    padding-top: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

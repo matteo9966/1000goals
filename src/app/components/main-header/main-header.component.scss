@@ -4,21 +4,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   fill: white;
   color: var(--primary-alt);
   text-align: center;
   @include m.global-font;
-  img {
-    width: 20%;
+  svg {
+    height: 5rem;
+
   }
   .slogan {
     text-transform: capitalize;
-    @include m.font-medium;
+    @include m.font-small;
   }
 
   .good-luck {
-    @include m.font-big;
+    @include m.font-small;
   }
 
 }

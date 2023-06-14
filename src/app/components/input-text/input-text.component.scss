@@ -1,0 +1,47 @@
+@use "../../../style/mixins" as m;
+$label-top:-2.5rem;
+.input-container {
+  width: 100%;
+  position: relative;
+
+  label {
+    position: absolute;
+    top: 0;
+    @include m.font-small;
+    pointer-events: none;
+    left: 0;
+    transition: all 0.2s ease-in;
+    color: var(--border-primary-color);
+  }
+
+  .text-input {
+    @include m.font-small;
+    border: none;
+    border-bottom: var(--border-primary);
+    background: var(--background-primary);
+    color: var(--primary-alt);
+    height: 2rem;
+    width: 100%;
+    margin-bottom: 1px;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:not(:placeholder-shown) ~ label {
+      top: $label-top;
+    }
+
+    &:focus {
+      border-bottom: var(--border-primary-thick);
+      margin-bottom: 0px;
+      border-color: var(--primary-alt);
+    }
+
+    &:focus ~ label {
+      top: $label-top;
+      color: var(--primary-alt);
+      @include m.font-x-small;
+    }
+  }
+}

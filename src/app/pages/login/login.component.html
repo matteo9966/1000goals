@@ -1,1 +1,10 @@
-<p>login works!</p>
+<app-form title="Login" [formGroup]="form">
+   <div class="inputs-area">
+    <app-input-text id="name-id" label="Name" formControlName="name"></app-input-text>
+    <app-input-text id="password-id" label="Password" formControlName="password"></app-input-text>
+   </div>
+   <div class="buttons-area">
+    <app-button (click)="onClickBack()">Back</app-button>
+    <app-button>Login</app-button>
+   </div>
+</app-form>

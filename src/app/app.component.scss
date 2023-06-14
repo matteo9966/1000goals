@@ -5,9 +5,11 @@
   padding: 0;
   margin: 0;
   background-color: gray;
+ 
 }
 
 .app{
+    padding:1rem;
     max-width: 100rem;
     width: 100%;
     min-height: 100vh;
@@ -15,8 +17,9 @@
     flex-direction: column;
     background-color: white;
     border-radius: 5px;
-    background-image: url('../assets/backgrounds/main-bg.jpg');
+    position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-image: url('../assets/backgrounds/main-bg.jpg');
 }
