@@ -5,6 +5,7 @@ import { InputTextComponent } from 'src/app/components/input-text/input-text.com
 import { ButtonComponent } from 'src/app/components/button/button.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ROUTES } from 'src/app/routes/routes';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -33,6 +34,6 @@ export class LoginComponent {
 
   onClickLogin(){}
   onClickBack(){
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl(ROUTES.home.base);
   }
 }
