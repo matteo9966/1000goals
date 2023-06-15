@@ -1,0 +1,54 @@
+@use '../../../style/mixins' as m;
+
+$grid-gap:1.5rem;
+.stats-section{
+    display: grid;
+    gap:$grid-gap;
+    grid-template-areas: "pie pie score" 
+                         "pie pie .";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    // height: 18rem;
+    width: 100%;
+    &>*{
+       @include m.styled-borders;
+    }
+
+}
+
+.title{
+    @include m.font-small;
+}
+
+.pie-chart-container{
+    grid-area: pie;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-container{
+    justify-content: space-around;
+    grid-area: score;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    align-items: center;
+    .score-num{
+        @include m.font-medium;
+    }
+    .title{
+        @include m.font-x-small;
+    }
+}
+
+
+.reached-goals-container{
+    margin-top:$grid-gap;
+}
+
+
+.reached-goals-title{
+    @include m.font-x-small;
+}

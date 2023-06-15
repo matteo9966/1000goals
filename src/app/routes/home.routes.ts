@@ -8,7 +8,7 @@ export const homeRoute: Routes = [
       import('../pages/home/home.component').then((c) => c.HomeComponent),
     children: [
       {
-        path: 'cta',
+        path: ROUTES.home.cta,
         title: 'Actions',
         loadComponent: () =>
           import('../pages/home-cta/home-cta.component').then(

@@ -7,6 +7,12 @@
     font-size: $size;
 }
 
+@mixin styled-borders{
+    border: 1px solid var(--border-primary-color);
+    border-radius: var(--border-radius);
+
+}
+
 
 @mixin font-huge {
    @include font-size(5rem);

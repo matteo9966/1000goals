@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="dashboard-body">
+  <p class="title">Your dashboard</p>
+  <section class="stats-section">
+    <div class="pie-chart-container">
+      <app-pie-chart></app-pie-chart>
+    </div>
+    <div class="score-container">
+      <span class="title">Score</span>
+      <span class="score-num">120</span>
+    </div>
+  </section>
+  <section class="reached-goals-container">
+    <p class="reached-goals-title">Reached goals</p>
+    <app-goals-list-container></app-goals-list-container>
+  </section>
+</div>

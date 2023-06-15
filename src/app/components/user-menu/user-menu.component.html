@@ -1,5 +1,48 @@
 <!-- <div class="blurry"></div> -->
-<div class="menu">The menu
-
-    <button (click)="close()">close</button>
+<div class="menu">
+  <app-close-btn (click)="close()"></app-close-btn>
+  <div class="menu-header">
+    <svg class="logo">
+      <use xlink:href="../../../assets/logos/logo.svg#logo"></use>
+    </svg>
+  </div>
+  <div class="menu-body">
+    <div class="menu-item">
+        <svg class="icon" (click)="navigateTo(linkToGoals)">
+          <use xlink:href="../../../assets/icons/menuicons.svg#icon-key"></use>
+        </svg>
+  
+      <span class="icon-title">Goals</span>
+    </div>
+    <div class="menu-item">
+        <svg class="icon" (click)="navigateTo(linkToProposed)">
+          <use  xlink:href="../../../assets/icons/menuicons.svg#icon-heart"></use>
+        </svg>
+     
+      <span class="icon-title">Proposed Goals</span>
+    </div>
+    <div class="menu-item">
+        <svg class="icon"  (click)="navigateTo(linkToUserHome)">
+          <use  xlink:href="../../../assets/icons/menuicons.svg#icon-home"></use>
+        </svg>
+      
+      <span class="icon-title">Home</span>
+    </div>
+  
+    <div class="menu-item">
+        <svg class="icon" (click)="navigateTo(linkToLeaderboard)">
+          <use  xlink:href="../../../assets/icons/menuicons.svg#icon-trophy"></use>
+        </svg>
+      <span class="icon-title">Leaderboard</span>
+    </div>
+    <div class="full-row logout-section">
+      <div class="menu-item">
+          <svg class="icon" (click)="navigateTo(linkToHome)">
+            <use  xlink:href="../../../assets/icons/menuicons.svg#icon-lock"></use>
+          </svg>
+        <span class="icon-title">Logout</span>
+      </div>
+ 
+    </div>
+  </div>
 </div>

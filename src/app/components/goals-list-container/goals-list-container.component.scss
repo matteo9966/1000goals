@@ -1,0 +1,29 @@
+// @use '../../../style/mixins' as m;
+// .list-container{
+//     all: unset;
+//     @include m.styled-borders;
+//     max-height: 200px;
+//     overflow-y: auto;
+//     display: block;
+//     display: flex;
+//     flex-direction: column;
+//     gap:10px;
+//     padding:1rem;
+// }
+
+// .goal-item{
+//     @include m.styled-borders;
+//     padding:1rem;
+//     display: flex;
+//     .goal-details{
+//         flex:1;
+//         @include m.font-x-small;
+//     }
+//     .points-container{
+//         flex-basis: 5ch;
+//         flex-shrink: 0;
+//         border-left: 1px solid var(--border-primary-color);
+//         @include m.font-small;
+//         padding-left: 0.5rem;
+//     }
+// }

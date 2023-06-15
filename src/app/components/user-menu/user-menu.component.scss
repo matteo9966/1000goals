@@ -1,10 +1,70 @@
+@use '../../../style/mixins' as m;
 :host{
-    position: fixed;
+    position: absolute;
     inset: 0;
+    z-index: 10;
 }
 
 .menu{
     backdrop-filter: blur(4px);
     height: 100%;
     position:relative;
+}
+
+.menu-header{
+   padding-top: 3rem;
+   padding-bottom:2rem;
+}
+
+.logo{
+    height: var(--user-menu-header-height);
+    width: var(--user-menu-header-height);
+    margin: auto;
+    display: block;
+}
+
+.menu-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 4rem;
+    gap: 4rem;
+    padding-top:8rem;
+}
+
+app-close-btn{
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+
+.menu-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1.5rem;
+    color:var(--primary-alt);
+    padding-top: 4rem;
+    
+    .icon{
+        fill:var(--primary-alt);
+        width:5rem;
+        height:5rem;
+        cursor: pointer;
+    }
+
+    .icon-title{
+        @include m.font-x-small;
+    }
+}
+
+.full-row{
+    grid-column: 1/-1;
+}
+
+.logout-section{
+    padding-top: 11rem;
+}
+
+.link{
+   all:unset;
 }

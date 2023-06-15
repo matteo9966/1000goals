@@ -1,6 +1,10 @@
 export const ROUTES = {
     user:{
-        base:'user',     
+        base:'user',
+        dashboard:'dashboard',
+        goals:'goals',
+        proposed:'proposed',
+        leaderboard:'leaderboard'     
     },
     home:{
         base:'home',

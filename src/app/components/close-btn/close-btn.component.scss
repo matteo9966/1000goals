@@ -1,0 +1,41 @@
+$close-size:5rem;
+:host{
+    width: $close-size;
+    height: $close-size;
+}
+.line{
+    background-color: white;
+    display: block;
+}
+
+.close{
+    position: relative;
+    width: $close-size;
+    height: $close-size;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    transform: rotate(45deg);
+    transform-origin: center;
+    
+    
+    &::before{
+        // display: block;
+        width: $close-size;
+        height:0.2rem;
+        content:"";
+        @extend .line;
+        
+        transform-origin: center;
+    }
+    &::after{
+        width:0.2rem; 
+        height:$close-size;
+        content:"";
+        @extend .line;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        
+    }
+}

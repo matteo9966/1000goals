@@ -1,0 +1,22 @@
+@use '../../../style/mixins' as m;
+
+.menu-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1.5rem;
+    color:var(--primary-alt);
+    padding-top: 4rem;
+    margin-bottom:4rem;
+    
+    .icon{
+        fill:var(--primary-alt);
+        width:5rem;
+        height:5rem;
+        cursor: pointer;
+    }
+
+    .icon-title{
+        @include m.font-x-small;
+    }
+}
