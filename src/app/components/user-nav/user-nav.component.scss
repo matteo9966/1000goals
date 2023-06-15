@@ -1,0 +1,22 @@
+@use '../../../style/mixins' as m;
+
+.user-nav{
+ display: flex;
+ gap: 1rem;
+}
+
+.logo{
+    height: 6rem;
+    width: 6rem;
+}
+
+.logout{
+    fill: white;
+}
+
+.title{
+    flex:1;
+    @include m.font-medium;
+    display: flex;
+    align-items: center;
+}

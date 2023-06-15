@@ -1,0 +1,10 @@
+:host{
+    position: fixed;
+    inset: 0;
+}
+
+.menu{
+    backdrop-filter: blur(4px);
+    height: 100%;
+    position:relative;
+}

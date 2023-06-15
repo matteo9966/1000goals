@@ -1,0 +1,32 @@
+:host{
+    height: 100%;
+    align-self: center;
+}
+
+
+.btn{
+    
+    background-color: white;
+    height: 0.2rem;
+    width: 3rem;
+}
+
+.nav-menu-btn{
+    appearance: unset;
+    position: relative;
+    @extend .btn;
+
+    &::before{
+        @extend .btn;
+        top:-1rem;
+        position: absolute;
+        content: "";
+    }
+
+    &::after{
+        content: "";
+        top:1rem;
+        position: absolute;
+        @extend .btn;
+    }
+}
