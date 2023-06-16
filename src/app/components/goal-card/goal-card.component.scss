@@ -8,18 +8,22 @@
     "title title";
   grid-template-rows: 1fr 1fr;
   padding: 0.5rem;
-  background-image: url("../../../assets/backgrounds/cards-backgrounds/img-1.jpg");
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: opacity(0.2);
   position: relative;
+
+  > * {
+    z-index: 1;
+  }
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     margin: auto;
-    background-color: #00000070;
-    z-index: -1;
+    // background-color: #00000070;
+    background-image: url("../../../assets/backgrounds/cards-backgrounds/img-1.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: opacity(0.8) brightness(0.5);;
+    z-index: 0;
   }
 }
 

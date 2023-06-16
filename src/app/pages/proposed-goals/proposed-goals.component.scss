@@ -1,8 +1,35 @@
+@use '../../../style/mixins' as m;
 .goal-list{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 0.6rem;
-    height: 80vh;
+    height: 90vh;
     overflow-y: auto;
+}
+
+.snap-container{
+    height: 100vh;
+}
+
+.form-container{
+    height: 0%;
+}
+
+.menu-buttons{
+    display: flex;
+    padding:0.5rem;
+    gap:1rem;
+
+    .button{
+        all: unset;
+        padding: 0.5rem 0.7rem;
+        background-color: transparent;
+        @include m.styled-borders;
+        @include m.font-x-small;
+    }
+
+    .active{
+        box-shadow: inset -11px 11px 100px -51px #FFFFFF;
+    }
 }
