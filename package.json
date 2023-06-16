@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 192.168.1.178",
     "build": "ng build --output-path docs --base-href /1000goals/ ",
     "make404": "./create404.sh",
     "build-4-deploy": "npm run build && npm run make404",
