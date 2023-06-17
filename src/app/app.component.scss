@@ -9,7 +9,8 @@
 }
 
 .app{
-    padding:1rem;
+    padding:var(--app-padding);
+    padding-top: 0;
     max-width: 100rem;
     width: 100%;
     min-height: 100vh;

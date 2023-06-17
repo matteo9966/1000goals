@@ -1,0 +1,39 @@
+@use "../../../style/mixins" as m;
+.text-area-container {
+  position: relative;
+}
+
+.textarea {
+  all: unset;
+  width: 100%;
+  display: block;
+  padding:0.5rem;
+  @include m.font-small;
+  @include m.styled-borders;
+  box-sizing: border-box;
+}
+
+.label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  transition: all 0.2s ease-in;
+  @include m.font-small;
+  color: var(--border-primary-color);
+}
+
+.textarea:focus ~ .label,
+.textarea:not(:placeholder-shown) ~ .label {
+  top: -2rem;
+
+  left: 0rem;
+}
+
+.textarea:focus ~ .label {
+  @include m.font-x-small;
+  color: var(--primary-alt);
+}
+
+.textarea::placeholder {
+  color: transparent;
+}

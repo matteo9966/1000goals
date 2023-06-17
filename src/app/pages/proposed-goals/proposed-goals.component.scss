@@ -20,6 +20,10 @@
     display: flex;
     padding:0.5rem;
     gap:1rem;
+    background: var(--user-nav-bg-color);
+    z-index: 2;
+    top: var(--user-nav-height);
+    position: sticky;
 
     .button{
         all: unset;

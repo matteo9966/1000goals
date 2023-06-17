@@ -1,0 +1,12 @@
+$navbar-height:var(--user-nav-height);
+header{
+    position: sticky;
+    height: $navbar-height;
+    top: 0;
+    background-color:var(--user-nav-bg-color);
+    z-index: 2;
+}
+main{
+    position: relative;
+
+}
