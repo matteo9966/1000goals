@@ -1,14 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent {
- value=50;
+  _value = 50;
+  @Output() valueChange = new EventEmitter<number>();
+
+  @Input() label="";
+  @Input() min=1;
+  @Input() max=100;
+
+  @Input()
+  set value(val: number) {
+    this._value = val;
+    this.valueChange.emit(val);
+  }
+  get value() {
+    return this._value;
+  }
 }

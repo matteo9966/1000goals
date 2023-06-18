@@ -34,6 +34,6 @@
     }
 
     .active{
-        box-shadow: inset -11px 11px 100px -51px #FFFFFF;
+        box-shadow: var(--active-button-box-shadow);
     }
 }

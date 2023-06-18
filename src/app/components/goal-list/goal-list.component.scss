@@ -1,0 +1,7 @@
+.goal-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 80vh;
+    overflow-y: auto;
+}

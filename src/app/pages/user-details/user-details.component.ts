@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoalCardComponent } from 'src/app/components/goal-card/goal-card.component';
 import { GoalListComponent } from 'src/app/components/goal-list/goal-list.component';
 
 @Component({
-  selector: 'app-goals',
+  selector: 'app-user-details',
   standalone: true,
   imports: [CommonModule,GoalListComponent],
-  templateUrl: './goals.component.html',
-  styleUrls: ['./goals.component.scss']
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss']
 })
-export class GoalsComponent {
-
+export class UserDetailsComponent {
+ selectedList:'goals'|'proposed'='goals';
 }

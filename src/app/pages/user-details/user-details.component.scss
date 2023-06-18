@@ -1,0 +1,70 @@
+@use "../../../style/mixins" as m;
+$details-padding-top:3rem;
+.details{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap:2rem;
+    padding-top: $details-padding-top;
+}
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    gap:0.2rem;
+
+}
+
+.points-container{
+    position: absolute;
+    top:0.5rem + $details-padding-top;
+    right:0;
+    @include m.styled-borders;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem;
+    gap:0.5rem;
+
+  .points-label{
+    @include m.font-x-small;
+  }
+
+  .points{
+    @include m.font-small;
+  }
+
+}
+
+
+.detail-label{
+  @include m.font-x-small;
+  color: var(--border-primary-color);
+}
+
+.detail-value{
+ @include  m.font-small;
+}
+
+.goals-and-proposed-buttons{
+    position: sticky;
+    top: var(--user-nav-height);
+    display: flex;
+    gap:2rem;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    
+    .button{
+        @include m.styled-borders;
+        @include m.font-x-small;
+        padding: 0.5rem;
+    }
+}
+
+.active{
+    box-shadow: var(--active-button-box-shadow);
+}
+
+app-goal-list{
+    margin-top: 2rem;
+}

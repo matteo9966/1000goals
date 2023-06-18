@@ -4,7 +4,10 @@ export const ROUTES = {
         dashboard:'dashboard',
         goals:'goals',
         proposed:'proposed',
-        leaderboard:'leaderboard'     
+        leaderboard:'leaderboard',
+        managegame:'manage',
+        players:'members', 
+        details:'details/:id',    
     },
     home:{
         base:'home',

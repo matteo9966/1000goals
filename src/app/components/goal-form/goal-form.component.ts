@@ -13,5 +13,5 @@ import { ButtonComponent } from '../button/button.component';
   styleUrls: ['./goal-form.component.scss']
 })
 export class GoalFormComponent {
-
+ points=50;
 }

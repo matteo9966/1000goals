@@ -1,0 +1,11 @@
+.add-user-form{
+    display: flex;
+    gap:2rem;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+app-input-text{
+    align-self:flex-end;
+    flex:1;
+}

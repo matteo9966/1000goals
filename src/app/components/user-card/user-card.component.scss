@@ -1,0 +1,40 @@
+@use "../../../style/mixins" as m;
+@use "../../../style/variables" as v;
+.user-card{
+    display:grid;
+    grid-template-columns: 1fr auto;
+    @include m.styled-borders;
+    padding:1rem;
+    @include m.add-background(v.$background-card-2);
+}
+
+.name-section{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+}
+
+.name{
+    @include m.font-small;
+}
+
+.details{
+    all: unset;
+    cursor: pointer;
+    @include m.font-x-small;
+    @include m.styled-borders;
+    padding: 0.2rem;
+}
+
+
+.points-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .label{
+        @include m.font-x-small;
+    }
+    .points{
+        @include m.font-medium;
+    }
+}

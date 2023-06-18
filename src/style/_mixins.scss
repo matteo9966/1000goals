@@ -3,40 +3,55 @@
   font-family: "Nova Mono", monospace;
 }
 
-@mixin font-size($size){
-    font-size: $size;
+@mixin font-size($size) {
+  font-size: $size;
 }
 
-@mixin styled-borders{
-    border: 1px solid var(--border-primary-color);
-    border-radius: var(--border-radius);
-
+@mixin styled-borders {
+  border: 1px solid var(--border-primary-color);
+  border-radius: var(--border-radius);
 }
-
 
 @mixin font-huge {
-   @include font-size(5rem);
+  @include font-size(5rem);
 }
 
 @mixin font-big {
-    @include font-size(4rem);
-    
+  @include font-size(4rem);
 }
 
 @mixin font-medium {
-    @include font-size(3rem);
-    
+  @include font-size(3rem);
 }
 @mixin font-small {
-    @include font-size(2rem);
-    
+  @include font-size(2rem);
 }
 
-@mixin font-x-small{
-    @include font-size(1.5rem);
+@mixin font-x-small {
+  @include font-size(1.5rem);
 }
 
 @mixin font-petite {
-    @include font-size(1rem);
+  @include font-size(1rem);
+}
 
+@mixin add-background($url) {
+  position: relative;
+
+  > * {
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    // background-color: #00000070;
+    background-image: $url;
+    background-size: cover;
+    background-position: center;
+    filter: opacity(0.8) brightness(0.5);
+    z-index: 0;
+  }
 }

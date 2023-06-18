@@ -34,6 +34,28 @@ export const userRoutes: Routes = [
             (c) => c.LeaderboardComponent
           ),
       },
+      {
+        path: ROUTES.user.managegame,
+        loadComponent: () =>
+          import('../pages/manage-game/manage-game.component').then(
+            (c) => c.ManageGameComponent
+          ),
+      },
+      {
+        path: ROUTES.user.players,
+        loadComponent: () =>
+          import('../pages/admin-members/admin-members.component').then(
+            (c) => c.AdminMembersComponent
+          ),
+      },
+      {
+        path: ROUTES.user.details,
+        loadComponent: () =>
+          import('../pages/user-details/user-details.component').then(
+            (c) => c.UserDetailsComponent
+          ),
+      },
+
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
   },

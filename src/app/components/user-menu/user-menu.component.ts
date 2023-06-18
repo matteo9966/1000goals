@@ -44,6 +44,8 @@ export class UserMenuComponent {
  get linkToLeaderboard(){
   return '/'+ROUTES.user.base+'/'+ROUTES.user.leaderboard
  }
-
+get linkToMembers(){
+  return '/'+ROUTES.user.base+'/'+ROUTES.user.players
+}
 
 }

@@ -7,9 +7,17 @@
     --primary-alt:#ffffffcc;
     --goal-card-badge-bg:#e4dec6a8;
     --user-nav-bg-color:black;
+    --active-button-box-shadow:inset -11px 11px 100px -51px #FFFFFF;
 
     //sizes
     --user-menu-header-height:6.5rem;
     --user-nav-height:7rem;
     --app-padding:1rem;
 }
+
+
+$background-card-1: url('../assets//backgrounds//cards-backgrounds/img-1.jpg');
+$background-card-2: url('../assets//backgrounds//cards-backgrounds/img-2.jpg');
+$background-card-3: url('../assets//backgrounds//cards-backgrounds/img-3.jpg');
+$background-card-4: url('../assets//backgrounds//cards-backgrounds/img-4.jpg');
+$background-card-5: url('../assets//backgrounds//cards-backgrounds/img-5.jpg');
