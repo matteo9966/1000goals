@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from 'src/app/components/form/form.component';
 import { InputTextComponent } from 'src/app/components/input-text/input-text.component';
@@ -11,6 +11,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SignupService } from 'src/app/services/signup.service';
+import { Requests } from '1000-goals-types';
+import { LoggerService } from 'src/app/services/logger.service';
+import { HttpClient } from '@angular/common/http';
+import { confirmPasswordValidator } from 'src/app/validators/confirmPassword.validator';
 @Component({
   selector: 'app-signup-page',
   standalone: true,
@@ -24,24 +29,70 @@ import { Router } from '@angular/router';
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.scss'],
 })
-export class SignupPageComponent {
+export class SignupPageComponent implements OnInit {
+  private minLengthName = 3;
+  private passMinLength = 6;
   form!: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private signupService: SignupService,
+    private logger: LoggerService
+  ) {
     this.initForm();
+  }
+
+  ngOnInit(): void {
+    this.form
+      .get('confirmPassword')
+      ?.addValidators([confirmPasswordValidator(this.form)]);
+    // this.form.statusChanges.subscribe(status=>console.log(status,this.form));//TODO: vedi qui come gestire gli errori
   }
 
   initForm() {
     this.form = this.fb.group({
-      name: this.fb.control('', [Validators.required]),
-      password: this.fb.control('', [Validators.required]),
-      confirmPassword: this.fb.control('',[])
+      name: this.fb.control('', [Validators.required, Validators.minLength(this.minLengthName)]),
+      password: this.fb.control('', [Validators.required, Validators.minLength(this.passMinLength)]),
+      confirmPassword: this.fb.control('', [Validators.required]),
     });
   }
 
   //add the password crossfield validator
 
-  onClickLogin() {}
+  onClickSignup() {
+    const signupData: Requests.SignupAdminRequest = {
+      name: this.form.get('name')?.value,
+      password: this.form.get('password')?.value,
+    };
+
+    this.signupService.signup(signupData).subscribe((response) => {
+      console.log(response);
+    });
+  }
   onClickBack() {
-    this.router.navigateByUrl('/'+ROUTES.home.base);
+    this.router.navigateByUrl('/' + ROUTES.home.base);
+  }
+
+  get nameErrorLabel() {
+    const required = this.form.get('name')?.errors?.['required'];
+    if (required) return 'Name is required';
+    const minlength = this.form.get('name')?.errors?.['minlength'];
+    if (minlength) return `Minimum length is ${this.minLengthName}`;
+    return null;
+  }
+
+  get confirmPasswordErrorLabel() {
+    const confirmPassErrors = this.form.get('confirmPassword')?.errors;
+    if (confirmPassErrors?.['required']) return 'Password confirm is required';
+    if (confirmPassErrors?.['confirmPassword'])
+      return 'Password does not correspond';
+      return null;
+    }
+    
+    get passwordErrorLabel() {
+      const errors = this.form.get('password')?.errors;
+      if (errors?.['required']) return 'Password is required';
+      if(errors?.['minlength']) return 'Password min length is '+this.passMinLength
+    return null;
   }
 }

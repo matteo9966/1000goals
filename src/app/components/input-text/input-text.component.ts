@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
@@ -12,17 +12,31 @@ import {
   imports: [CommonModule, FormsModule],
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputTextComponent ,multi:true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: InputTextComponent,
+      multi: true,
+    },
+  ],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class InputTextComponent implements ControlValueAccessor {
+export class InputTextComponent implements ControlValueAccessor, OnInit {
   private _value = '';
   disabled = false;
   @Input() id: string = Math.random().toString().slice(2, 6);
   @Input() label: string = 'Label';
-
+  @Input() errorLabel:string|null="";
+  @Input() type: 'password' | 'text' = 'text';
+  isPassword = false; //this stays fixed
+ 
+  
   onChange = (val: string) => {};
   onTouched = () => {};
-
+  
+  ngOnInit(): void {
+    this.isPassword = this.type === 'password';
+  }
   writeValue(obj: any): void {
     if (obj) {
       this._value = obj;
@@ -36,6 +50,17 @@ export class InputTextComponent implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  togglePasswordVisibility() {
+    if (this.type === 'password') {
+      this.type = 'text';
+      return;
+    }
+    if (this.type === 'text') {
+      this.type = 'password';
+      return;
+    }
   }
 
   set value(val: string) {

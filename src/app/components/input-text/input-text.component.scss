@@ -1,5 +1,5 @@
 @use "../../../style/mixins" as m;
-$label-top:-2.5rem;
+$label-top: -2.5rem;
 .input-container {
   width: 100%;
   position: relative;
@@ -16,13 +16,13 @@ $label-top:-2.5rem;
 
   .text-input {
     @include m.font-small;
+    box-sizing: border-box;
     border: none;
     border-bottom: var(--border-primary);
     background: var(--background-primary);
     color: var(--primary-alt);
     height: 2rem;
     width: 100%;
-    margin-bottom: 1px;
 
     &::placeholder {
       color: transparent;
@@ -33,8 +33,7 @@ $label-top:-2.5rem;
     }
 
     &:focus {
-      border-bottom: var(--border-primary-thick);
-      margin-bottom: 0px;
+      border-bottom: var(--border-primary);
       border-color: var(--primary-alt);
     }
 
@@ -42,6 +41,48 @@ $label-top:-2.5rem;
       top: $label-top;
       color: var(--primary-alt);
       @include m.font-x-small;
+    }
+  }
+}
+
+.eye-container {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  > svg {
+    fill: var(--primary-alt);
+  }
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  color: var(--error-primary);
+  visibility: hidden;
+}
+
+:host {
+  &.ng-touched.ng-invalid {
+    .input-container {
+      input:not(:focus){
+        border-bottom:1px solid var(--error-primary);
+        &~.error-message {
+          visibility: visible;
+        }
+      }
+      }
+  
+    }
+  }
+
+
+:host{
+  &.ng-touched.ng-valid{
+    .input-container{
+      input{
+        border-bottom:1px solid var(--success-primary);
+      }
     }
   }
 }

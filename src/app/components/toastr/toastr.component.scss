@@ -1,0 +1,28 @@
+@use '../../../style/mixins' as m;
+:host{
+    position: fixed;
+    bottom:20px;
+    right:10px;
+    width: 50vw;
+    height: 10rem;
+    box-sizing: border-box;
+}
+
+.toastr{
+    border-radius: 10px;
+    height: 100%;
+    box-sizing: inherit;
+    padding:10px;
+    @include m.font-small;
+    border: 1px solid;
+
+}
+
+.success{
+    background-color:var(--success-toastr-bg);
+}
+
+.error{
+    
+    background-color:var(--error-toastr-bg);
+}

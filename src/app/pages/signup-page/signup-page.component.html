@@ -4,20 +4,25 @@
       id="name-id"
       label="Name"
       formControlName="name"
+      [errorLabel]="nameErrorLabel"
     ></app-input-text>
     <app-input-text
       id="password-id"
       label="Password"
       formControlName="password"
+      type="password"
+      [errorLabel]="passwordErrorLabel"
     ></app-input-text>
     <app-input-text
       id="confirm-password-id"
       label="Confirm password"
       formControlName="confirmPassword"
+      type="password"
+      [errorLabel]="confirmPasswordErrorLabel"
     ></app-input-text>
   </div>
   <div class="buttons-area">
     <app-button (click)="onClickBack()">Back</app-button>
-    <app-button>Signup</app-button>
+    <app-button (click)="onClickSignup()">Signup</app-button>
   </div>
 </app-form>
