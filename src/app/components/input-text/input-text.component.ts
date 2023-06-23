@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
@@ -22,6 +22,7 @@ import {
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class InputTextComponent implements ControlValueAccessor, OnInit {
+  private cdr = inject(ChangeDetectorRef);
   private _value = '';
   disabled = false;
   @Input() id: string = Math.random().toString().slice(2, 6);
@@ -38,8 +39,9 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
     this.isPassword = this.type === 'password';
   }
   writeValue(obj: any): void {
-    if (obj) {
-      this._value = obj;
+    this.cdr.markForCheck();
+    if (obj!==null || obj!==undefined) {
+      this.value = obj;
     }
   }
   registerOnChange(fn: any): void {

@@ -23,6 +23,6 @@
   </div>
   <div class="buttons-area">
     <app-button (click)="onClickBack()">Back</app-button>
-    <app-button (click)="onClickSignup()">Signup</app-button>
+    <app-button (click)="onClickSignup()" [disabled]="disableSignupBtn">Signup</app-button>
   </div>
 </app-form>

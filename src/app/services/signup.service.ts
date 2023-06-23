@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { SignupAdminBody } from '1000-goals-types/src/Responses/signupAdminResponse';
+import { SignupAdminResponse } from '1000-goals-types/src/Responses/signupAdminResponse';
 import { SignupAdminRequest } from '1000-goals-types/src/Requests';
 import {ROUTES} from '1000-goals-types/lib';
 import { API_BASE } from '../app.config';
@@ -16,6 +16,6 @@ export class SignupService {
   
   signup(request:SignupAdminRequest){
     this.logger.info('signup url: '+this.signupURL);
-    return this.http.post<SignupAdminBody>(this.signupURL,request)
+    return this.http.post<SignupAdminResponse>(this.signupURL,request)
   }
 }

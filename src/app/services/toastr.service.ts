@@ -12,7 +12,7 @@ export class ToastrService {
       this.timerid && clearTimeout(this.timerid)
       this.timerid = setTimeout(() => {
         this.setSowToastr(false)
-      }, 4000 );
+      }, 5000 );
     }
   }))
 

@@ -1,8 +1,7 @@
 @use "../../../style/mixins" as m;
 .primary {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  border: 1px solid rgba(146, 146, 146, 0.6);
+  background-color: var(--background-primary); /* Black w/opacity/see-through */
+  border: var(--border-primary);
   font-weight: 400;
   position: relative;
   outline: none;
@@ -18,4 +17,8 @@
   color:var(--primary-alt);
   @include m.global-font;
   @include m.font-medium;
+
+  &:disabled{
+    color:var(--border-primary-color);
+  }
 }

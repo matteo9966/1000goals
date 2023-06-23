@@ -24,6 +24,16 @@ $label-top: -2.5rem;
     height: 2rem;
     width: 100%;
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #ffffff;
+      transition: background-color 5000s ease-in-out 0s;
+      box-shadow: inset 0 0 20px 20px #23232329;
+    }
+
     &::placeholder {
       color: transparent;
     }
@@ -65,23 +75,21 @@ $label-top: -2.5rem;
 :host {
   &.ng-touched.ng-invalid {
     .input-container {
-      input:not(:focus){
-        border-bottom:1px solid var(--error-primary);
-        &~.error-message {
+      input:not(:focus) {
+        border-bottom: 1px solid var(--error-primary);
+        & ~ .error-message {
           visibility: visible;
         }
       }
-      }
-  
     }
   }
+}
 
-
-:host{
-  &.ng-touched.ng-valid{
-    .input-container{
-      input{
-        border-bottom:1px solid var(--success-primary);
+:host {
+  &.ng-touched.ng-valid {
+    .input-container {
+      input {
+        border-bottom: 1px solid var(--success-primary);
       }
     }
   }

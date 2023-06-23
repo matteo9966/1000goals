@@ -2,10 +2,10 @@
   <input
     class="text-input"
     [type]="type"
-    value=""
     [id]="id"
     [placeholder]="'placeholder'"
     [(ngModel)]="value"
+    [value]="value"
     [style.paddingRight]="isPassword?'24px':'0px'"
   />
   <span class="eye-container" *ngIf="isPassword" (click)="togglePasswordVisibility()">
