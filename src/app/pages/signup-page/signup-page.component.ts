@@ -50,8 +50,6 @@ export class SignupPageComponent implements OnInit {
     this.form
       .get('confirmPassword')
       ?.addValidators([confirmPasswordValidator(this.form)]);
-    // this.form.statusChanges.subscribe(status=>console.log(status,this.form));//TODO: vedi qui come gestire gli errori
-    this.form.get('name')!.setValue('pistacchio');
   }
 
   initForm() {
@@ -85,7 +83,7 @@ export class SignupPageComponent implements OnInit {
       this.toastrService.setSowToastr(true);
       return;
     }
-
+    this.disableSignupBtn = true;
     const signupData: Requests.SignupAdminRequest = {
       name: this.form.get('name')?.value,
       password: this.form.get('password')?.value,

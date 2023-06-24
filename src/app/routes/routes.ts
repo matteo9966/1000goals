@@ -6,7 +6,8 @@ export const ROUTES = {
         proposed:'proposed',
         leaderboard:'leaderboard',
         managegame:'manage',
-        players:'members', 
+        players:'members',
+        newgame:'newgame', 
         details:'details/:id',    
     },
     home:{

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTES } from './routes';
+import { canActivateDashboard } from '../guards/canActivateDashboard.guard';
 export const userRoutes: Routes = [
   {
     path: '',
@@ -12,6 +13,12 @@ export const userRoutes: Routes = [
           import('../pages/dashboard/dashboard.component').then(
             (c) => c.DashboardComponent
           ),
+        canActivate: [
+          canActivateDashboard(
+            ['/',ROUTES.user.base,'/', ROUTES.user.newgame].join('')
+          ),
+        ],
+        //TODO: add a can activate that navigates to new game if user is admin and there is no game
       },
       {
         path: ROUTES.user.goals,
@@ -53,6 +60,13 @@ export const userRoutes: Routes = [
         loadComponent: () =>
           import('../pages/user-details/user-details.component').then(
             (c) => c.UserDetailsComponent
+          ),
+      },
+      {
+        path: ROUTES.user.newgame,
+        loadComponent: () =>
+          import('../pages/new-game/new-game.component').then(
+            (c) => c.NewGameComponent
           ),
       },
 
