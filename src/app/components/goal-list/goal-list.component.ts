@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoalCardComponent } from '../goal-card/goal-card.component';
+import { Goal } from '1000-goals-types';
 
 @Component({
   selector: 'app-goal-list',
@@ -10,5 +11,5 @@ import { GoalCardComponent } from '../goal-card/goal-card.component';
   styleUrls: ['./goal-list.component.scss']
 })
 export class GoalListComponent {
-
+ @Input() list:Goal[]=[]
 }

@@ -15,7 +15,7 @@ import { ToastrService } from 'src/app/services/toastr.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import { tap, finalize } from 'rxjs';
-import { USERDATA_STORAGE_KEY } from 'src/app/app.config';
+import { STORAGE, USERDATA_STORAGE_KEY } from 'src/app/app.config';
 
 const stringify = (data: Record<any, any>) => {
   try {
@@ -47,7 +47,7 @@ export class LoginComponent {
     private toastrService: ToastrService,
     private loginService: LoginService,
     private userService: UserService,
-    private storage: Storage,
+   @Inject(STORAGE) private storage: Storage,
     @Inject(USERDATA_STORAGE_KEY) private userStorageKey:string
   ) {
     this.initForm();
@@ -85,21 +85,20 @@ export class LoginComponent {
         finalize(() => {
           setTimeout(() => {
             this.disabledLogin = false;
-            if (this.userService.userData) {
+            if (this.userService.getUserData()) {
               this.router.navigateByUrl(ROUTES.user.base);
             }
           }, 1000);
         })
       )
       .subscribe((data) => {
-        if (data.data) {
-          this.userService.userData = data.data;
+        if (data?.data) {
+          this.userService.setUserData(data.data);
           this.userService.setLoginStatus(true);
           const parsedData = stringify(data.data);
           if(parsedData){
             this.storage.setItem(this.userStorageKey, JSON.stringify(data.data));
           }
-
         }
       });
   }

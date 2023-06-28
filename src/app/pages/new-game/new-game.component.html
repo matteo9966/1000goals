@@ -1,4 +1,10 @@
 <div class="new-game">
-  <app-text-area label="Description"></app-text-area>
-  <app-input-text label="Name"></app-input-text>
+  <p class="title">Create a new 1000 points game</p>
+  <form class="form" [formGroup]="form">
+    <app-input-text label="Name" [errorLabel]="nameErrorLabel" formControlName="name"></app-input-text>
+    <app-text-area label="Description" formControlName="description"></app-text-area>
+    <div class="button-area">
+      <app-button type="submit" (click)="onSubmit($event)" [disabled]="disabledSubmit"><span class="button-text" >Create game</span></app-button>
+    </div>
+  </form>
 </div>

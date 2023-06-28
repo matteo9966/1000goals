@@ -1,21 +1,7 @@
-<div class="goal-list">
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
-    <app-goal-card></app-goal-card>
+<div class="goal-list" *ngIf="list.length>0;else emptylist">
+    <app-goal-card *ngFor="let goal of list"></app-goal-card>
 </div>
+
+<ng-template #emptylist>
+    <p>Nothing to show</p>
+</ng-template>

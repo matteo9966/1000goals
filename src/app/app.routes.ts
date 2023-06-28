@@ -4,7 +4,8 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home/cta',
+    // redirectTo: 'home/cta',
+    redirectTo: [ROUTES.user.base,ROUTES.user.newgame].join('/'),
   },
   // {
   //   path: 'login',

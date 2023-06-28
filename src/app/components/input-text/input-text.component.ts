@@ -40,9 +40,10 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
   }
   writeValue(obj: any): void {
     this.cdr.markForCheck();
-    if (obj!==null || obj!==undefined) {
-      this.value = obj;
+    if (obj==null || obj==undefined) {
+     return
     }
+    this.value = obj;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

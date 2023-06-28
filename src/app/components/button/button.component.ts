@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class ButtonComponent {
   @Input() disabled = false; 
+  @Input() type:'button'|'submit'='button';
 }

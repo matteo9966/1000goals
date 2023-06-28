@@ -1,22 +1,22 @@
 <div class="details">
   <div class="points-container">
     <span class="points-label">Points</span>
-    <span class="points">500</span>
+    <span class="points">{{points}}</span>
   </div>
   <div class="detail">
     <span class="detail-label">Name</span>
-    <span class="detail-value">Matteo</span>
+    <span class="detail-value">{{username}}</span>
   </div>
 
   <div class="detail">
     <span class="detail-label">Temporary password</span>
-    <span class="detail-value"> password1234 </span>
+    <span class="detail-value"> {{tempPassword}} </span>
   </div>
 </div>
 
 <div class="goals-and-proposed-buttons">
-  <span class="button" [class.active]="selectedList==='goals'">Goals</span>
-  <span class="button" [class.active]="selectedList==='proposed'">Proposed</span>
+  <span class="button" [class.active]="selectedList==='goals'" (click)="clickList('goals')">Goals</span>
+  <span class="button" [class.active]="selectedList==='proposed'" (click)="clickList('proposed')">Proposed</span>
 </div>
 <app-goal-list></app-goal-list>
 

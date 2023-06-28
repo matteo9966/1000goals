@@ -1,4 +1,11 @@
-<form class="add-user-form">
-    <app-input-text label="Name"></app-input-text>
-    <app-button>Add</app-button>
+<form class="add-user-form" #userform="ngForm">
+  <app-input-text
+    label="Name"
+    [(ngModel)]="username"
+    name="name"
+    required
+    errorLabel="A name for the user is required"
+    #name="ngModel"
+  ></app-input-text>
+  <app-button [disabled]="userform.form.invalid" (click)="onClickAddUser()">Add</app-button>
 </form>

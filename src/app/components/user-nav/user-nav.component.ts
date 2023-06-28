@@ -22,7 +22,7 @@ export class UserNavComponent {
   }
 
   get name(){
-    return this.userService.userData?.user?.name || "not-logged-in";
+    return this.userService.getUserData()?.user?.name || "not-logged-in";
   }
   
 }

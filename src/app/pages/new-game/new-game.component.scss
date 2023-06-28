@@ -1,0 +1,21 @@
+@use "../../../style/mixins" as m;
+
+.form {
+    padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap:5rem;
+}
+.title {
+  @include m.font-medium;
+}
+
+
+.button-area{
+    display: flex;
+    justify-content: center;
+}
+
+.button-text{
+    white-space: nowrap;
+}
