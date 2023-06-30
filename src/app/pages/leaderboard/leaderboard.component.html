@@ -4,15 +4,15 @@
     </svg>
   <span class="icon-title">Leaderboard</span>
 </div>
-<ul class="list-container">
-    <li class="goal-item">
-        <span class="goal-details">Name</span>
+<ul class="list-container" *ngIf="leaderboard;else empty">
+    <li class="goal-item" *ngFor="let player of leaderboard">
+        <span class="goal-details">{{player.name}}</span>
         <span class="points-container">
-            <span>30</span>
+            <span>{{player.points}}</span>
         </span>
 
     </li>
-    <li class="goal-item">
+    <!-- <li class="goal-item">
         <span class="goal-details">Did something special</span>
         <span class="points-container">
             <span>30</span>
@@ -53,5 +53,9 @@
             <span>30</span>
         </span>
 
-    </li>
+    </li> -->
 </ul>
+
+<ng-template #empty>
+    <p>Nothing to show here</p>
+</ng-template>

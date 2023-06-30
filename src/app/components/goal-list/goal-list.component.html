@@ -1,5 +1,5 @@
 <div class="goal-list" *ngIf="list.length>0;else emptylist">
-    <app-goal-card *ngFor="let goal of list"></app-goal-card>
+    <app-goal-card *ngFor="let goal of list" [goal]="goal"></app-goal-card>
 </div>
 
 <ng-template #emptylist>

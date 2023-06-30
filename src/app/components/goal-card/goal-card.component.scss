@@ -1,5 +1,8 @@
 @use "../../../style/mixins" as m;
 .goal-card {
+  >*{
+    text-transform: capitalize;
+  }
   @include m.styled-borders;
   display: grid;
   grid-template-columns: 1fr 7rem;
@@ -58,4 +61,17 @@
   justify-content: center;
   align-items: center;
   @include m.font-small;
+}
+
+
+.action-section{
+  display: flex;
+  padding: 1rem;
+  @include m.font-small;
+  gap:2rem;
+  justify-content: center;
+}
+
+.button-content{
+  padding:0.5rem;
 }
