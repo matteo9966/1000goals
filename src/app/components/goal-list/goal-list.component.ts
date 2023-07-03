@@ -1,15 +1,40 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoalCardComponent } from '../goal-card/goal-card.component';
-import { Goal } from '1000-goals-types';
+import { Goal, User } from '1000-goals-types';
+import { UserService } from 'src/app/services/user.service';
+import { IsReachedPipe } from 'src/app/pipes/is-reached.pipe';
 
 @Component({
   selector: 'app-goal-list',
   standalone: true,
-  imports: [CommonModule,GoalCardComponent],
+  imports: [CommonModule, GoalCardComponent,IsReachedPipe],
   templateUrl: './goal-list.component.html',
-  styleUrls: ['./goal-list.component.scss']
+  styleUrls: ['./goal-list.component.scss'],
 })
 export class GoalListComponent {
- @Input() list:Goal[]=[]
+  constructor(private userService: UserService) {}
+  @Input() list: Goal[] = [];
+  @Input() userReachedGoals:string[]=[];
+  
+  clickedReachedGoal(goalId: string | null) {
+    if (!goalId) return;
+    this.userService.insertReachedGoal(goalId).subscribe((response) => {
+      if (!response) {
+        //toastr
+      }
+
+      this.userService.patchUserData((userData) => {
+        const user = userData.game?.players.find(
+          (p) => p?.name === userData?.user?.name
+        );
+        if (!user) {
+          return userData; // error while patching
+        }
+        userData.user.goals.push(goalId);
+        user.goals.push(goalId);
+        return userData;
+      });
+    });
+  }
 }

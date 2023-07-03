@@ -17,4 +17,8 @@ export class GoalsComponent {
   get goalList(){
     return this.userservice.getUserData()?.game?.goals || []
   }
+
+  get userReachedGoals(){
+    return this.userservice.getUserData()?.user?.goals || []
+  }
 }

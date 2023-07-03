@@ -1,4 +1,4 @@
-<div class="goal-card" (click)="toggleShowDetails()">
+<div class="goal-card" (click)="toggleShowDetails()" [ngClass]="{reached:reached}">
   <div class="description-area">
     <p class="description">
       {{ goal.description || goal.name }}
@@ -11,7 +11,7 @@
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
   </div>
-  <div *ngIf="show" class="action-section">
+  <div *ngIf="!reached && show" class="action-section">
      <app-button>
       <span class="button-content">
         I reached this goal
