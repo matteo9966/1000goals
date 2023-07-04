@@ -22,8 +22,9 @@ export class DashboardComponent implements OnInit {
   }
   get points() {
     //the game data has the id of the games
-    const pnts=  this.userservice.getUserData()?.user.goals
-      .map((g) => {
+    const pnts = this.userservice
+      .getUserData()
+      ?.user.goals.map((g) => {
         const gameGoals = this.userservice.getUserData()?.game?.goals;
         const goal = gameGoals?.find((game) => game?.id === g);
         return goal?.points;
@@ -33,8 +34,25 @@ export class DashboardComponent implements OnInit {
         return sum! + current!;
       }, 0);
 
-      return pnts
+    return pnts;
   }
 
+  get percentage() {
+    if (!this.points) return '0';
+    return Math.round(
+      (Math.min((this.points / 1000) * 100, 100) * 100) / 100
+    ).toString();
+  }
 
+  get reachedGoals() {
+    return this.userservice
+      .getUserData()
+      ?.user.goals.map((goalID) =>
+        this.userservice
+          .getUserData()
+          ?.game?.goals?.find((goal) => goal.id === goalID)
+      )
+      .filter((goal) => !!goal?.name)
+      .map((goal) => ({ detail: goal!.name, points: goal?.points }));
+  }
 }

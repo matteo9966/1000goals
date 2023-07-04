@@ -61,6 +61,11 @@
   justify-content: center;
   align-items: center;
   @include m.font-small;
+  
+  &.reached-badge{
+    background-color: var(--success-primary);
+    color: black;
+  }
 }
 
 

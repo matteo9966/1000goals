@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class PieChartComponent {
   @Input() pieColor:string='green';
-  @Input() percentage:number=35;
+  @Input() percentage:string="0";
 }

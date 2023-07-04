@@ -6,13 +6,13 @@
   </div>
 
   <div class="points-area">
-    <div class="points-badge" *ngIf="showPoints">{{ goal.points || 2 }}</div>
+    <div class="points-badge" [ngClass]="{'reached-badge':reached}" *ngIf="showPoints">{{ goal.points || 2 }}</div>
   </div>
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
   </div>
   <div *ngIf="!reached && show" class="action-section">
-     <app-button>
+     <app-button (click)="onClickReachedGoal()">
       <span class="button-content">
         I reached this goal
       </span>

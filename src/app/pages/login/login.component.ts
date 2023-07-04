@@ -1,4 +1,4 @@
-import { Component,Inject } from '@angular/core';
+import { Component,Inject,Input,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from 'src/app/components/form/form.component';
 import { InputTextComponent } from 'src/app/components/input-text/input-text.component';
@@ -38,9 +38,12 @@ const stringify = (data: Record<any, any>) => {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   form!: FormGroup;
   disabledLogin = false;
+  @Input('password') passwordFromQueryString="";
+  @Input('username') usernameFromQueryString="";
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -50,15 +53,22 @@ export class LoginComponent {
    @Inject(STORAGE) private storage: Storage,
     @Inject(USERDATA_STORAGE_KEY) private userStorageKey:string
   ) {
+    
+  }
+  ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
+    const pass = this.passwordFromQueryString?this.passwordFromQueryString:"";
+    const usernm = this.usernameFromQueryString?this.usernameFromQueryString:"";
     this.form = this.fb.group({
-      name: this.fb.control('', [Validators.required]),
-      password: this.fb.control('', [Validators.required]),
+      name: this.fb.control(usernm, [Validators.required]),
+      password: this.fb.control(pass, [Validators.required]),
     });
   }
+
+
 
   onClickLogin() {
     if (this.disabledLogin) return;

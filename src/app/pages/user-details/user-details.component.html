@@ -8,15 +8,22 @@
     <span class="detail-value">{{username}}</span>
   </div>
 
-  <div class="detail">
+  <!-- <div class="detail" *ngIf="isAdmin">
     <span class="detail-label">Temporary password</span>
     <span class="detail-value"> {{tempPassword}} </span>
+  </div> -->
+  <div class="detail">
+    <span class="detail-label">Copy Login Link for {{username}}  <img src="assets/icons/clipboard.svg" alt="copy to clipboard"> </span>
+    <app-button (click)="clickCopyLoginLink()">
+      <img src="assets/icons/clipboard.svg" alt="copy to clipboard">
+    </app-button>
   </div>
+
 </div>
 
 <div class="goals-and-proposed-buttons">
   <span class="button" [class.active]="selectedList==='goals'" (click)="clickList('goals')">Goals</span>
   <span class="button" [class.active]="selectedList==='proposed'" (click)="clickList('proposed')">Proposed</span>
 </div>
-<app-goal-list></app-goal-list>
+<app-goal-list [list]="list"></app-goal-list>
 

@@ -4,6 +4,7 @@ import { GoalCardComponent } from '../goal-card/goal-card.component';
 import { Goal, User } from '1000-goals-types';
 import { UserService } from 'src/app/services/user.service';
 import { IsReachedPipe } from 'src/app/pipes/is-reached.pipe';
+import { ToastrService } from 'src/app/services/toastr.service';
 
 @Component({
   selector: 'app-goal-list',
@@ -13,7 +14,7 @@ import { IsReachedPipe } from 'src/app/pipes/is-reached.pipe';
   styleUrls: ['./goal-list.component.scss'],
 })
 export class GoalListComponent {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private toastrService:ToastrService) {}
   @Input() list: Goal[] = [];
   @Input() userReachedGoals:string[]=[];
   
@@ -21,9 +22,10 @@ export class GoalListComponent {
     if (!goalId) return;
     this.userService.insertReachedGoal(goalId).subscribe((response) => {
       if (!response) {
-        //toastr
+        // this.toastrService.setSowToastr(true)
+        // this.toastrService.setToastrMessage('Error while inserting the goal')
+        return
       }
-
       this.userService.patchUserData((userData) => {
         const user = userData.game?.players.find(
           (p) => p?.name === userData?.user?.name
