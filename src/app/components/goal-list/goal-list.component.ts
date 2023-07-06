@@ -17,6 +17,7 @@ export class GoalListComponent {
   constructor(private userService: UserService,private toastrService:ToastrService) {}
   @Input() list: Goal[] = [];
   @Input() userReachedGoals:string[]=[];
+  @Input() withAction:boolean=true;
   
   clickedReachedGoal(goalId: string | null) {
     if (!goalId) return;

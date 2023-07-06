@@ -8,12 +8,14 @@ export const ROUTES = {
         managegame:'manage',
         players:'members',
         newgame:'newgame', 
-        details:'details/:id',    
+        details:'details/:id', 
+        // changePassword:'change-password',   
     },
     home:{
         base:'home',
         login:'login',
         signup:'signup',
         cta:'cta',
-    }
+    },
+    changePassword:'change-password'
 }

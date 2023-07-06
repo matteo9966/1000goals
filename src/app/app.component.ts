@@ -46,6 +46,10 @@ export class AppComponent implements OnInit {
   get toastrShow$() {
     return this.toastrService.showToastr$;
   }
+
+  get userdata(){
+    return this.userService.getUserData()
+  }
 }
 
 

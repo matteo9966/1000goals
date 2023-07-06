@@ -30,6 +30,9 @@
 @mixin font-x-small {
   @include font-size(1.5rem);
 }
+@mixin font-x-x-small {
+  @include font-size(1.2rem);
+}
 
 @mixin font-petite {
   @include font-size(1rem);

@@ -15,7 +15,7 @@ export const userRoutes: Routes = [
           ),
         canActivate: [
           canActivateDashboard(
-            ['/',ROUTES.user.base,'/', ROUTES.user.newgame].join('')
+            ['/', ROUTES.user.base, '/', ROUTES.user.newgame].join('')
           ),
         ],
         //TODO: add a can activate that navigates to new game if user is admin and there is no game
@@ -69,7 +69,7 @@ export const userRoutes: Routes = [
             (c) => c.NewGameComponent
           ),
       },
-
+     
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
   },

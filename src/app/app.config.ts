@@ -19,6 +19,8 @@ export const appConfig: ApplicationConfig = {
     //                           ^^     add this to use the input bindings of the url
     provideAnimations(),
     provideHttpClient(withInterceptors([errorInterceptor])),
+
+    // { provide: API_BASE, useValue: 'http://192.168.1.178:5000/api/v1' },
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
     { provide: STORAGE, useValue: sessionStorage },
     { provide: PAGES_BASE, useValue: 'https://192.168.1.178:4200/' },

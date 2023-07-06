@@ -24,9 +24,7 @@ const mockAdminWOGameID = {
 
 describe('canActivateDashboardGuard', () => {
   let mockRouter: Router;
-  const mockUserService = jasmine.createSpyObj<UserService>('userService', [], {
-    userData: mockUser,
-  });
+
 
   //mock the router
 
@@ -50,8 +48,8 @@ describe('canActivateDashboardGuard', () => {
   it('should have defined userData', () => {
     setupTest(mockUser);
     const userservice = TestBed.inject(UserService);
-    expect(userservice.userData?.user.gameID).toBe('game-id');
-    expect(userservice.userData?.user.role).toBe('admin');
+    expect(userservice.getUserData()?.user.gameID).toBe('game-id');
+    expect(userservice.getUserData()?.user.role).toBe('admin');
   });
 
   it('should allow user with game', () => {

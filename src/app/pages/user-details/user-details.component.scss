@@ -5,10 +5,11 @@ $details-padding-top:3rem;
     flex-direction: column;
     position: relative;
     gap:2rem;
-    padding-top: $details-padding-top;
+    // padding-top: $details-padding-top;
 }
 
 .detail{
+    // margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap:0.2rem;
@@ -17,21 +18,22 @@ $details-padding-top:3rem;
 
 .points-container{
     position: absolute;
-    top:0.5rem + $details-padding-top;
+    top:0.5rem;
     right:0;
     @include m.styled-borders;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.8rem;
+    padding: 0.2rem;
     gap:0.5rem;
 
   .points-label{
-    @include m.font-x-small;
+    @include m.font-x-x-small;
+    white-space: nowrap;
   }
 
   .points{
-    @include m.font-small;
+    @include m.font-x-small;
   }
 
 }
@@ -39,6 +41,8 @@ $details-padding-top:3rem;
 
 .detail-label{
   @include m.font-x-small;
+  font-size: 1.2rem;
+  white-space: nowrap;
   color: var(--border-primary-color);
 }
 
@@ -47,12 +51,16 @@ $details-padding-top:3rem;
 }
 
 .goals-and-proposed-buttons{
+  background-color: black;
+    --goals-and-proposed-buttons-height:3rem;
+    height: var(--goals-and-proposed-buttons-height);
     position: sticky;
     top: var(--user-nav-height);
     display: flex;
     gap:2rem;
     padding: 2rem 0;
-    margin-top: 3rem;
+    z-index: 2;
+ 
     
     .button{
         @include m.styled-borders;
@@ -65,6 +73,33 @@ $details-padding-top:3rem;
     box-shadow: var(--active-button-box-shadow);
 }
 
+.clipboard-image{
+  margin-left: 5ch;
+  filter: invert(1);
+  transform: scale(1.3);
+  transition: transform 0.2s ease-in-out;
+
+  &:active{
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(59%) sepia(74%) saturate(2637%) hue-rotate(77deg) brightness(113%) contrast(126%);
+  }
+}
+
+
 app-goal-list{
+    height: var(--total-height);
     margin-top: 2rem;
+    z-index: 1;
+    position: relative;
+}
+
+
+.link-copied{
+  margin-left: 1rem;
+  @include m.font-x-small;
+}
+
+.buttons-and-list-container{
+  position: relative;
+  z-index: 1;
 }

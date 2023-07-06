@@ -1,29 +1,47 @@
 <div class="details">
   <div class="points-container">
     <span class="points-label">Points</span>
-    <span class="points">{{points}}</span>
+    <span class="points">{{ points }}</span>
   </div>
   <div class="detail">
     <span class="detail-label">Name</span>
-    <span class="detail-value">{{username}}</span>
+    <span class="detail-value">{{ username }}</span>
   </div>
 
   <!-- <div class="detail" *ngIf="isAdmin">
     <span class="detail-label">Temporary password</span>
     <span class="detail-value"> {{tempPassword}} </span>
   </div> -->
-  <div class="detail">
-    <span class="detail-label">Copy Login Link for {{username}}  <img src="assets/icons/clipboard.svg" alt="copy to clipboard"> </span>
-    <app-button (click)="clickCopyLoginLink()">
-      <img src="assets/icons/clipboard.svg" alt="copy to clipboard">
-    </app-button>
+  <div class="detail" *ngIf="isAdmin">
+    <span class="detail-label copy-clipboard"
+      >Copy Login Link for {{ username }}
+      <img
+        src="assets/icons/clipboard.svg"
+        alt="copy to clipboard"
+        class="clipboard-image"
+        #copyclipboard
+        (click)="clickCopyLoginLink()"
+      />
+      <!-- <span *ngIf="showLinkCopiedMessage" class="link-copied"
+        >Link copied!</span
+      > -->
+    </span>
   </div>
-
 </div>
-
-<div class="goals-and-proposed-buttons">
-  <span class="button" [class.active]="selectedList==='goals'" (click)="clickList('goals')">Goals</span>
-  <span class="button" [class.active]="selectedList==='proposed'" (click)="clickList('proposed')">Proposed</span>
+<div class="buttons-and-list-container">
+  <div class="goals-and-proposed-buttons">
+    <span
+      class="button"
+      [class.active]="selectedList === 'goals'"
+      (click)="clickList('goals')"
+      >Goals</span
+    >
+    <span
+      class="button"
+      [class.active]="selectedList === 'proposed'"
+      (click)="clickList('proposed')"
+      >Proposed</span
+    >
+  </div>
+  <app-goal-list [list]="list" [withAction]="false"></app-goal-list>
 </div>
-<app-goal-list [list]="list"></app-goal-list>
-

@@ -10,6 +10,10 @@ export const homeRoute: Routes = [
       {
         path: ROUTES.home.cta,
         title: 'Actions',
+        // loadComponent: () =>
+        //   import('../pages/change-password/change-password.component').then(
+        //     (c) => c.ChangePasswordComponent
+        //   ),
         loadComponent: () =>
           import('../pages/home-cta/home-cta.component').then(
             (c) => c.HomeCtaComponent

@@ -11,7 +11,7 @@
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
   </div>
-  <div *ngIf="!reached && show" class="action-section">
+  <div *ngIf="withAction && !reached && show" class="action-section">
      <app-button (click)="onClickReachedGoal()">
       <span class="button-content">
         I reached this goal

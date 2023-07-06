@@ -1,20 +1,22 @@
 <div class="menu-buttons">
-    <button (click)="onClickMenu('proposed')" class="button" [class.active]="selected=='proposed'">Proposed goals</button>
-  <button (click)="onClickMenu('form')" class="button" [class.active]="selected=='form'">Propose</button>
+  <button
+    (click)="onClickMenu('proposed')"
+    class="button"
+    [class.active]="selected == 'proposed'"
+  >
+    Proposed goals
+  </button>
+  <button
+    (click)="onClickMenu('form')"
+    class="button"
+    [class.active]="selected == 'form'"
+  >
+    Propose
+  </button>
 </div>
 <ng-template [ngTemplateOutlet]="showedTemplate"></ng-template>
 <ng-template #proposedgoals>
-  <div class="goal-list">
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-    <app-goal-card [showPoints]="false"></app-goal-card>
-  </div>
+  <div class="goal-list"></div>
 </ng-template>
 <ng-template #form>
   <app-goal-form></app-goal-form>

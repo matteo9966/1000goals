@@ -1,32 +1,12 @@
 import { Routes } from '@angular/router';
 import { ROUTES } from './routes/routes';
+import { canActivateUserChildRoutesGuard } from './guards/canActivateUserChildRoutes.guard';
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home/cta',
   },
-  // {
-  //   path: 'login',
-  //   title: 'Login',
-  //   loadComponent: () =>
-  //     import('./pages/login/login.component').then((c) => c.LoginComponent),
-  // },
-  // {
-  //   path: 'signup',
-  //   title: 'Signup',
-  //   loadComponent: () =>
-  //     import('./pages/signup-page/signup-page.component').then(
-  //       (c) => c.SignupPageComponent
-  //     ),
-  // },
-  // {
-  //   path: 'home',
-  //   title: 'Home',
-  //   loadComponent: () =>
-  //     import('./pages/home/home.component').then((c) => c.HomeComponent),
-  // },
-
   {
     path: ROUTES.home.base,
     loadChildren: () => import('./routes/home.routes').then((r) => r.homeRoute),
@@ -37,6 +17,14 @@ export const routes: Routes = [
     title: 'User',
     loadChildren: () =>
       import('./routes/user.routes').then((r) => r.userRoutes),
+    canActivateChild: [canActivateUserChildRoutesGuard],
+  },
+  {
+    path: ROUTES.changePassword,
+    loadComponent: () =>
+      import('./pages/change-password/change-password.component').then(
+        (c) => c.ChangePasswordComponent
+      ),
   },
 
   //TODO: { path: '**', component: PageNotFoundComponent },

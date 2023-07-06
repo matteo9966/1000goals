@@ -79,6 +79,7 @@
 
 .button-content{
   padding:0.5rem;
+  @include m.font-x-small;
 }
 
 .reached{
