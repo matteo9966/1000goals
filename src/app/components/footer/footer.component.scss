@@ -1,0 +1,47 @@
+@use '../../../style/mixins' as m;
+.section-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-container{
+    padding: 0.3rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--user-nav-bg-color);
+}
+
+.icons-container{
+    display: flex;
+    gap:10px;
+    padding-top:20px;
+    padding-bottom: 5px;
+}
+
+
+.icon-container{
+    display: flex;
+    padding:0.2rem;
+    border-radius: 50%;
+    border: 1px solid var( --primary-alt);
+    justify-content: center;
+    align-items: center;
+}
+
+.icons{
+
+    fill: var( --primary-alt);
+   
+
+}
+
+.cb-idea{
+  @include m.font-x-x-small;
+  color:var(--goal-card-badge-bg);
+}
+
+.copy{
+    vertical-align: top;
+}

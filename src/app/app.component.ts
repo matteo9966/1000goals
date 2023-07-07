@@ -7,11 +7,12 @@ import { ToastrService } from './services/toastr.service';
 import { STORAGE, USERDATA_STORAGE_KEY } from './app.config';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 import { UserService } from './services/user.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MainHeaderComponent, ToastrComponent],
+  imports: [CommonModule, RouterOutlet, MainHeaderComponent, ToastrComponent,FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

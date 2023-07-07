@@ -107,6 +107,7 @@ export class SignupPageComponent implements OnInit {
           this.toastrService.setSowToastr(true);
           Object.values(this.form.controls).forEach((c) => {
             c.reset();
+            c.setValue("")
             c.markAsUntouched();
           });
           this.form.markAsUntouched();
