@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.disabledLogin = false;
             if (this.userService.getUserData()) {
-              this.router.navigateByUrl(ROUTES.user.base);
+              this.router.navigate(['/'+ROUTES.user.base]);
             }
           }, 1000);
         })

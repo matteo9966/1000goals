@@ -25,6 +25,9 @@ export class AdminMembersComponent {
   return this.userService.getUserData()
  }
 
+ get isAdmin(){
+  return this.userService.isAdmin()
+ }
 
 
 }

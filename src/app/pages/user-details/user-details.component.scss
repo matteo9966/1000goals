@@ -58,8 +58,9 @@ $details-padding-top:3rem;
     top: var(--user-nav-height);
     display: flex;
     gap:2rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
     z-index: 2;
+    margin-top: 1rem;
  
     
     .button{

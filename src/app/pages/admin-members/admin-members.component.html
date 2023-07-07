@@ -4,7 +4,7 @@
 <div class="members-container">
   <app-user-card *ngFor="let user of memberList" [name]="user.name" [id]="user.id" [points]="userData|pointsPipe:user.id"></app-user-card>
 </div>
-<div class="add-member">
+<div class="add-member" *ngIf="isAdmin">
   <p class="add-member-label">Add member</p>
   <app-admin-add-user-form></app-admin-add-user-form>
 </div>
