@@ -44,7 +44,8 @@ app-close-btn{
     align-items: center;
     gap:1.5rem;
     color:var(--primary-alt);
-    padding-top: 4rem;
+    padding-block: 4rem;
+    @include m.glass-bg;
     
     .icon{
         fill:var(--primary-alt);

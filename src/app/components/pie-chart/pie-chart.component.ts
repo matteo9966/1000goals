@@ -9,6 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent {
-  @Input() pieColor:string='green';
+  @Input() pieColor:string='#025a82e0';
   @Input() percentage:string="0";
 }

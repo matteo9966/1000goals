@@ -1,22 +1,22 @@
 @use "../../../style/mixins" as m;
 .primary {
-  background-color: var(--background-primary); /* Black w/opacity/see-through */
-  border: var(--border-primary);
+  // background-color: var(--background-primary); /* Black w/opacity/see-through */
   font-weight: 400;
   position: relative;
   outline: none;
-  border-radius: 50px;
+  // border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   height: 45px;
   opacity: 1;
-  padding:0.5rem;
+  padding:0.5rem 1.2rem;
   color:var(--primary-alt);
   @include m.global-font;
   @include m.font-medium;
-
+  @include m.glass-bg;
+  border: var(--border-primary);
   &:disabled{
     color:var(--border-primary-color);
   }

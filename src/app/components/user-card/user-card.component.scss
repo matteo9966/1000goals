@@ -4,8 +4,10 @@
     display:grid;
     grid-template-columns: 1fr auto;
     @include m.styled-borders;
-    padding:1rem;
+    padding:1.5rem 1.2rem;
     @include m.add-background(v.$background-card-2);
+    // @include m.glass-bg;
+    overflow: hidden;
 }
 
 .name-section{

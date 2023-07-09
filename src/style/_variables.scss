@@ -3,7 +3,6 @@
     --border-primary-thick:2px solid rgba(146, 146, 146, 0.6);
     --border-primary-color:rgba(146, 146, 146, 0.6);
     --background-primary:rgba(0,0,0, 0.4);
-    --border-radius:0.5rem;
     --primary-alt:#ffffffcc;
     --goal-card-badge-bg:#e4dec6a8;
     --user-nav-bg-color:black;
@@ -12,14 +11,15 @@
     --success-primary:rgb(43, 131, 47);
     --success-toastr-bg: #00ff002b;
     --error-toastr-bg: #d5000091;
-
+    
     //sizes
     --user-menu-header-height:6.5rem;
     --user-nav-height:7rem;
     --app-padding:1rem;
     --footer-height:5rem;
     --goals-proposed-goals-details-buttons-navbar:3rem;
-    --total-height:calc(var(--user-nav-height) + var(--footer-height) + var(--goals-proposed-goals-details-buttons-navbar))
+    --total-height:calc(var(--user-nav-height) + var(--footer-height) + var(--goals-proposed-goals-details-buttons-navbar));
+    --border-radius:1.6rem;
 }
 
 

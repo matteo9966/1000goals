@@ -4,21 +4,20 @@
     width: 100%;
     height: 100%;
     display: flex;
-    // backdrop-filter: blur(2px);
     @include m.glass-bg;
-}
-.pie {
+  }
+  .pie {
     margin: auto;
     display: block;
     width: 90%;
     aspect-ratio:1;
     display: flex;
     place-content: center;
-    font-size: 25px;
     position:relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include m.font-huge;
   }
   
   .pie:before{

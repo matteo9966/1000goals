@@ -1,21 +1,37 @@
 @use './mixins' as m;
 .list-container{
     all: unset;
-    @include m.styled-borders;
+    // @include m.styled-borders;
     max-height: 40vh;
-    overflow-y: auto;
+    // overflow-y: auto;
     display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+    padding:2rem;
+    backdrop-filter: blur(2px);
+    box-sizing: border-box;
+    @include m.glass-bg;
+}
+
+.list-items-container{
     display: flex;
     flex-direction: column;
     gap:10px;
-    padding:1rem;
-    backdrop-filter: blur(2px);
+    overflow-y: auto;
+    width: 100%;
 }
 
 .goal-item{
-    @include m.styled-borders;
+    // @include m.styled-borders;
+
     padding:1rem;
     display: flex;
+    // @include m.glass-bg;
+    border-bottom: 1px solid var(--border-primary-color);
+
     .goal-details{
         flex:1;
         @include m.font-x-small;

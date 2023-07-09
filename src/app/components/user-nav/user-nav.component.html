@@ -1,10 +1,10 @@
 <nav class="user-nav">
-  <div class="menu-btn" (click)="openMenu = true">
-    <app-nav-menu-btn ></app-nav-menu-btn>
-  </div>
   <svg class="logo">
     <use xlink:href="assets/logos/logo.svg#logo"></use>
   </svg>
-  <span class="title">{{name}}</span>
+  <!-- <span class="title">{{name}}</span> -->
+  <div class="menu-btn" (click)="openMenu = true" *ngIf="!openMenu">
+    <app-nav-menu-btn ></app-nav-menu-btn>
+  </div>
 </nav>
 <app-user-menu *ngIf="openMenu" (menuState)="openMenu = $event"></app-user-menu>

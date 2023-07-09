@@ -1,10 +1,13 @@
 <ul class="list-container" *ngIf="list && list.length>0;else nogoals">
-  <li class="goal-item" *ngFor="let item of list">
-    <span class="goal-details">{{ item.detail }}</span>
-    <span class="points-container" *ngIf="item?.points">
-      <span>{{ item.points }}</span>
-    </span>
-  </li>
+  <div class="list-items-container">
+    <li class="goal-item" *ngFor="let item of list">
+      <span class="goal-details">{{ item.detail }}</span>
+      <span class="points-container" *ngIf="item?.points">
+        <span>{{ item.points }}</span>
+      </span>
+    </li>
+
+  </div>
 </ul>
 
 <ng-template #nogoals>

@@ -2,11 +2,12 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  border: var(--border-primary);
+  // border: var(--border-primary);
   background: var(--background-primary);
-  border-radius: var(--border-radius);
+  // border-radius: var(--border-radius);
   padding: 0.5rem;
   padding:2.5rem;
+  @include m.glass-bg;
 
   .title {
     @include m.font-small;

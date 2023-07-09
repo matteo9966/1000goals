@@ -1,13 +1,20 @@
 @use '../../../style/mixins' as m;
-
+:host{
+    width: 100%;
+}
 .user-nav{
  display: flex;
  gap: 1rem;
+ position: relative;
+ z-index: 2;
+ align-items: center;
+ width: 100%;
+ justify-content: space-between;
 }
 
 .logo{
-    height: 6rem;
-    width: 6rem;
+    height: 5rem;
+    width: 5rem;
 }
 
 .logout{
@@ -23,4 +30,5 @@
 
 .menu-btn{
     display: flex;
+    height: 6rem;
 }

@@ -1,19 +1,24 @@
 <div class="menu-item">
-    <svg class="icon">
-      <use  xlink:href="assets/icons/menuicons.svg#icon-trophy"></use>
-    </svg>
+  <svg class="icon">
+    <use xlink:href="assets/icons/menuicons.svg#icon-trophy"></use>
+  </svg>
   <span class="icon-title">Leaderboard</span>
 </div>
-<ul class="list-container" *ngIf="leaderboard;else empty">
-    <li class="goal-item" *ngFor="let player of leaderboard" (click)="onClickUser(player.id)">
-        <span class="goal-details">{{player.name}}</span>
-        <span class="points-container">
-            <span>{{player.points}}</span>
-        </span>
-
+<ul class="list-container" *ngIf="leaderboard; else empty">
+  <div class="list-items-container">
+    <li
+      class="goal-item"
+      *ngFor="let player of leaderboard"
+      (click)="onClickUser(player.id)"
+    >
+      <span class="goal-details">{{ player.name }}</span>
+      <span class="points-container">
+        <span>{{ player.points }}</span>
+      </span>
     </li>
+  </div>
 </ul>
 
 <ng-template #empty>
-    <p>Nothing to show here</p>
+  <p>Nothing to show here</p>
 </ng-template>

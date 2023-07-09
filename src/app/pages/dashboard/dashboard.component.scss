@@ -1,6 +1,10 @@
 @use '../../../style/mixins' as m;
 
 $grid-gap:1.5rem;
+.dashboard-body{
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+}
 .stats-section{
     display: grid;
     gap:$grid-gap;
@@ -10,14 +14,15 @@ $grid-gap:1.5rem;
     grid-template-rows: 1fr 1fr;
     // height: 18rem;
     width: 100%;
-    &>*{
-       @include m.styled-borders;
-    }
+    // &>*{
+    //    @include m.styled-borders;
+    // }
 
 }
 
 .title{
     @include m.font-small;
+    padding-bottom: 2rem;
 }
 
 .pie-chart-container{
@@ -35,6 +40,7 @@ $grid-gap:1.5rem;
     flex-direction: column;
     gap:5px;
     align-items: center;
+    @include m.glass-bg;
     .score-num{
         @include m.font-medium;
     }
