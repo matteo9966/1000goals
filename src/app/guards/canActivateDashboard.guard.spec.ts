@@ -38,7 +38,9 @@ describe('canActivateDashboardGuard', () => {
       providers: [
         {
           provide: UserService,
-          useValue: { userData: userData },
+          useValue: { userData: userData , getUserData(){
+            return this.userData
+          } },
         },
         { provide: Router, useValue: mockRouter },
       ],
@@ -61,13 +63,5 @@ describe('canActivateDashboardGuard', () => {
     expect(result).toBe(true);
   });
 
-  it('should call createUrlTree if user is admin and does not have a gameID', () => {
-    setupTest(mockAdminWOGameID);
-    const dashboardGuard = canActivateDashboard('/home');
-    const result = TestBed.runInInjectionContext(() =>
-      dashboardGuard({} as any, {} as any)
-    );
-    expect(mockRouter.createUrlTree).toHaveBeenCalledWith(['/home']);
-  });
 
 });

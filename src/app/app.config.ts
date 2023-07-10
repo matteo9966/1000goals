@@ -23,6 +23,6 @@ export const appConfig: ApplicationConfig = {
     // { provide: API_BASE, useValue: 'http://192.168.1.178:5000/api/v1' },
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
     { provide: STORAGE, useValue: sessionStorage },
-    { provide: PAGES_BASE, useValue: 'http://192.168.1.178:4200/' },
+    { provide: PAGES_BASE, useValue: 'https://192.168.1.178:4200/' },
   ],
 };

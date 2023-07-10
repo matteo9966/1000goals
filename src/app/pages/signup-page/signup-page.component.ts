@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { confirmPasswordValidator } from 'src/app/validators/confirmPassword.validator';
 import { ToastrService } from 'src/app/services/toastr.service';
 import { tap } from 'rxjs';
+import { usernameValidator } from 'src/app/validators/usernameValidator.validator';
 @Component({
   selector: 'app-signup-page',
   standalone: true,
@@ -56,7 +57,7 @@ export class SignupPageComponent implements OnInit {
     this.form = this.fb.group({
       name: this.fb.control('', [
         Validators.required,
-        Validators.minLength(this.minLengthName),
+        usernameValidator,
       ]),
       password: this.fb.control('', [
         Validators.required,
@@ -126,8 +127,8 @@ export class SignupPageComponent implements OnInit {
   get nameErrorLabel() {
     const required = this.form.get('name')?.errors?.['required'];
     if (required) return 'Name is required';
-    const minlength = this.form.get('name')?.errors?.['minlength'];
-    if (minlength) return `Minimum length is ${this.minLengthName}`;
+    const username = this.form.get('name')?.errors?.['username'];
+    if(username) return username
     return null;
   }
 
