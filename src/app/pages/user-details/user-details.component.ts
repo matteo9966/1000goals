@@ -94,6 +94,10 @@ export class UserDetailsComponent implements OnInit {
   get isAdmin() {
     return this.userService.isAdmin();
   }
+
+
+
+
 }
 
 function setList(
@@ -111,8 +115,11 @@ function setList(
   let mappedList: Goal[] = [];
   let goals: Goal[] = [];
   if (listType === 'proposed') {
-    playerList = player?.proposed || [];
-    goals = userData.game?.proposedGoals || [];
+    // playerList = player?.proposed || []; //!REMOVE
+    const userProposedGoals = userData.game?.proposedGoals.filter(goal=>goal.proposedBy===player?.name)!
+    goals = userProposedGoals.map(g=>g.goal);
+    return goals
+
   } else {
     playerList = player?.goals || [];
     goals = userData.game?.goals || [];

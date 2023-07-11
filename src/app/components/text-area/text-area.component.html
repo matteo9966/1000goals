@@ -8,5 +8,8 @@
     placeholder="placeholder"
     [(ngModel)]="value"
   ></textarea>
-  <label [for]="id" class="label">{{label}}</label>
+  <label [for]="id" class="label">{{ label }}</label>
 </div>
+<span class="error-label" [ngClass]="{ showError: !!errorLabel }"
+  >{{errorLabel}}</span
+>

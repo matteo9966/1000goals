@@ -4,8 +4,9 @@ import { InputTextComponent } from '../input-text/input-text.component';
 import { ButtonComponent } from '../button/button.component';
 import { GameService } from 'src/app/services/game.service';
 import { UserService } from 'src/app/services/user.service';
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { AbstractControl, FormsModule, NgForm, NgModel } from '@angular/forms';
 import { finalize } from 'rxjs';
+import { usernameValidator } from 'src/app/validators/usernameValidator.validator';
 
 @Component({
   selector: 'app-admin-add-user-form',
@@ -17,6 +18,7 @@ import { finalize } from 'rxjs';
 export class AdminAddUserFormComponent {
   username: string | null = null;
   disabledButton = false;
+  errorLabel="";
   @ViewChild('name', { read: NgModel, static: true }) nameInput!: NgModel;
   @ViewChild(NgForm,{static:true}) form!:NgForm;
   constructor(
@@ -29,6 +31,17 @@ export class AdminAddUserFormComponent {
     if (!this.username) {
       return;
     }
+  
+
+
+    const validationErrors = usernameValidator(this.nameInput.control)
+
+    if(validationErrors){
+      this.errorLabel="Only alphanumeric names are accepted"
+      return
+    }
+
+
     this.gameService
       .addUserToGame(this.username)
       .pipe(

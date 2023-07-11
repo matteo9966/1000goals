@@ -1,9 +1,16 @@
-<form action="" class="form">
-    <app-input-text label="Name"></app-input-text>
-    <app-slider [(value)]="points" label="Points" ></app-slider>
-    <app-text-area label="Description" ></app-text-area>
-    <div class="button-container">
-        <app-button>Create</app-button>
-    </div>
+<form action="" class="form" [formGroup]="form">
+  <app-input-text
+    label="Name"
+    [errorLabel]="nameError"
+    formControlName="name"
+  ></app-input-text>
+  <!-- <app-slider [(value)]="points" label="Points" ></app-slider> -->
+  <app-text-area
+    [errorLabel]="descriptionErrors"
+    label="Description"
+    formControlName="description"
+  ></app-text-area>
+  <div class="button-container">
+    <app-button [disabled]="!formValid" (click)="onClickAddGoal()">Create</app-button>
+  </div>
 </form>
-

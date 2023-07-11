@@ -4,7 +4,7 @@
     [(ngModel)]="username"
     name="name"
     required
-    errorLabel="A name for the user is required"
+    [errorLabel]="errorLabel"
     #name="ngModel"
   ></app-input-text>
   <app-button [disabled]="userform.form.invalid" (click)="onClickAddUser()">Add</app-button>

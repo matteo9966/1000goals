@@ -19,6 +19,7 @@ import {
 export class TextAreaComponent implements ControlValueAccessor {
   @Input() id = Math.random().toString().slice(2, 6);
   @Input() label = '';
+  @Input() errorLabel:string|null=''
 
   private _value = '';
   onChange(val: string) {}
@@ -26,7 +27,7 @@ export class TextAreaComponent implements ControlValueAccessor {
   isDisabled = false;
 
   writeValue(obj: any): void {
-    if(!obj) return
+    if(obj===null || obj==undefined ) return
     this.value = obj;
   }
   registerOnChange(fn: any): void {
