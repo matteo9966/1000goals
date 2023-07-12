@@ -1,7 +1,7 @@
 <div
   class="goal-card"
   (click)="toggleShowDetails()"
-  [ngClass]="{ reached: reached }"
+  [ngClass]="{ reached: reached , myproposed:isMyProposed}"
 >
   <div class="description-area">
     <p class="description">
@@ -17,6 +17,7 @@
     >
       {{ goal.points || 2 }}
     </div>
+    <!-- PUT A BADGE BUT WITH number of players / to show how many votes are missing -->
   </div>
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
@@ -33,7 +34,7 @@
 </ng-template>
 
 <ng-template #upvote>
-  <div *ngIf="withAction && !upvoted && show" class="action-section">
+  <div *ngIf="withAction && !upvoted && !isMyProposed && show" class="action-section">
     <app-button (click)="onClickReachedGoal()">
       <span class="button-content"> Upvote this goal </span>
     </app-button>

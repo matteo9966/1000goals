@@ -28,6 +28,7 @@ export class GoalCardComponent implements OnInit {
   @Input() actionType: 'upvote' | 'reached' = 'reached';
   @Input() reached: boolean = false;
   @Input() upvoted: boolean = false; //upvoted so don't show
+  @Input() isMyProposed:boolean=false;
   @Output() clickReachedGoal = new EventEmitter<string | null>();
   @Output() clickOnGoal = new EventEmitter<string | null>();
   @ViewChild('buttoncontainer', { read: ViewContainerRef,static:true })
