@@ -16,7 +16,7 @@
 </div>
 <ng-template [ngTemplateOutlet]="showedTemplate"></ng-template>
 <ng-template #proposedgoals>
-  <app-goal-list [list]="proposedGoalList" [withAction]="false"></app-goal-list>
+  <app-goal-list [list]="proposedGoalList" [withAction]="true" [actionType]="'upvote'"></app-goal-list>
 </ng-template>
 <ng-template #form>
   <app-goal-form></app-goal-form>

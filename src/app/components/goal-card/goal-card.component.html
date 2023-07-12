@@ -1,4 +1,8 @@
-<div class="goal-card" (click)="toggleShowDetails()" [ngClass]="{reached:reached}">
+<div
+  class="goal-card"
+  (click)="toggleShowDetails()"
+  [ngClass]="{ reached: reached }"
+>
   <div class="description-area">
     <p class="description">
       {{ goal.description || goal.name }}
@@ -6,16 +10,32 @@
   </div>
 
   <div class="points-area">
-    <div class="points-badge" [ngClass]="{'reached-badge':reached}" *ngIf="showPoints">{{ goal.points || 2 }}</div>
+    <div
+      class="points-badge"
+      [ngClass]="{ 'reached-badge': reached }"
+      *ngIf="showPoints"
+    >
+      {{ goal.points || 2 }}
+    </div>
   </div>
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
   </div>
+  <ng-container #buttoncontainer></ng-container>
+</div>
+
+<ng-template #reachedgoal>
   <div *ngIf="withAction && !reached && show" class="action-section">
-     <app-button (click)="onClickReachedGoal()">
-      <span class="button-content">
-        I reached this goal
-      </span>
+    <app-button (click)="onClickReachedGoal()">
+      <span class="button-content"> I reached this goal </span>
     </app-button>
   </div>
-</div>
+</ng-template>
+
+<ng-template #upvote>
+  <div *ngIf="withAction && !upvoted && show" class="action-section">
+    <app-button (click)="onClickReachedGoal()">
+      <span class="button-content"> Upvote this goal </span>
+    </app-button>
+  </div>
+</ng-template>

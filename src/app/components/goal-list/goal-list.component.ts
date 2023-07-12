@@ -18,8 +18,9 @@ export class GoalListComponent {
   @Input() list: Goal[] = [];
   @Input() userReachedGoals:string[]=[];
   @Input() withAction:boolean=true;
+  @Input() actionType:'upvote' | 'reached' = 'reached';
   
-  clickedReachedGoal(goalId: string | null) {
+ private clickedReachedGoal(goalId: string | null) {
     if (!goalId) return;
     this.userService.insertReachedGoal(goalId).subscribe((response) => {
       if (!response) {
@@ -40,4 +41,13 @@ export class GoalListComponent {
       });
     });
   }
+
+  clickedOnGoal(goalId:string|null){
+    if(this.actionType==='reached'){
+      this.clickedReachedGoal(goalId)
+    }else{
+
+    }
+  }
+
 }
