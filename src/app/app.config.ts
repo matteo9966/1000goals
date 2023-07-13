@@ -1,5 +1,9 @@
 import { ApplicationConfig, InjectionToken } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
@@ -15,13 +19,17 @@ export const USERDATA_STORAGE_KEY = new InjectionToken<string>('storage-key', {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })
+    ),
     //                           ^^     add this to use the input bindings of the url
     provideAnimations(),
     provideHttpClient(withInterceptors([errorInterceptor])),
 
-    // { provide: API_BASE, useValue: 'http://192.168.1.178:5000/api/v1' },
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
+    // { provide: API_BASE, useValue: 'https://one000-game-api-staging.onrender.com/api/v1' },
     { provide: STORAGE, useValue: sessionStorage },
     { provide: PAGES_BASE, useValue: 'https://192.168.1.178:4200/' },
   ],

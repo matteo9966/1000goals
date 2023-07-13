@@ -15,6 +15,7 @@ export class GameService {
   createGameURL = '';
   insertUserURL = '';
   insertProposedGoalURL = '';
+  upvoteProposedGoalURL = '';
 
   constructor(
     private userService: UserService,
@@ -26,6 +27,7 @@ export class GameService {
     this.insertUserURL = apiBase + ROUTES.games.base + ROUTES.games.insertUser;
     this.insertProposedGoalURL =
       apiBase + ROUTES.games.base + ROUTES.games.insertProposedGoals;
+    this.upvoteProposedGoalURL =  apiBase + ROUTES.games.base + ROUTES.games.upvoteGoal;
   }
   createGame(gameBody: Requests.InsertGameRequest['game']) {
     const username = this.userService.getUserData()?.user?.name;
@@ -85,5 +87,18 @@ export class GameService {
       this.insertProposedGoalURL,
       request
     );
+  }
+
+  upvoteProposedGoal(goalId: string) {
+    const gameId = this.userService.getUserData()?.game?.id;
+    const username = this.userService.getUserData()?.user.name;
+    if (!gameId || !username) return;
+    const upvoteRequestBody: Requests.UpvoteGoalRequest = {
+      gameId,
+      goalId,
+      username,
+    };
+
+    return this.http.patch<Responses.UpvoteGoalResponse>(this.upvoteProposedGoalURL,upvoteRequestBody);
   }
 }

@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { Goal } from '1000-goals-types';
 import { ButtonComponent } from '../button/button.component';
 
+
 @Component({
   selector: 'app-goal-card',
   standalone: true,
@@ -29,6 +30,7 @@ export class GoalCardComponent implements OnInit {
   @Input() reached: boolean = false;
   @Input() upvoted: boolean = false; //upvoted so don't show
   @Input() isMyProposed:boolean=false;
+  @Input() upvoteRatio:string="0/0"; //this is the ratio of number of votes / number of players in the game
   @Output() clickReachedGoal = new EventEmitter<string | null>();
   @Output() clickOnGoal = new EventEmitter<string | null>();
   @ViewChild('buttoncontainer', { read: ViewContainerRef,static:true })
@@ -66,6 +68,10 @@ export class GoalCardComponent implements OnInit {
       this.container.clear();
       this.container.createEmbeddedView(this.reachedGoalBtnTemplate);
     }
+  }
+
+  get isUpvote(){
+    return this.actionType==='upvote'
   }
 
 

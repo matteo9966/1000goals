@@ -7,18 +7,31 @@
     <p class="description">
       {{ goal.description || goal.name }}
     </p>
+
+    <div *ngIf="isUpvote">
+      2 points
+    </div>
+
   </div>
 
   <div class="points-area">
     <div
       class="points-badge"
       [ngClass]="{ 'reached-badge': reached }"
-      *ngIf="showPoints"
+      *ngIf="showPoints && !isUpvote"
     >
       {{ goal.points || 2 }}
     </div>
-    <!-- PUT A BADGE BUT WITH number of players / to show how many votes are missing -->
+
+    <div
+      class="upvotes-badge"
+      [ngClass]="{ 'reached-badge': reached }"
+      *ngIf="isUpvote"
+    >
+      {{ upvoteRatio }}
+    </div>
   </div>
+  
   <div class="title-area">
     <span class="title"> {{ goal.name }} </span>
   </div>
@@ -35,7 +48,7 @@
 
 <ng-template #upvote>
   <div *ngIf="withAction && !upvoted && !isMyProposed && show" class="action-section">
-    <app-button (click)="onClickReachedGoal()">
+    <app-button (click)="onClickUpvote()">
       <span class="button-content"> Upvote this goal </span>
     </app-button>
   </div>
