@@ -30,7 +30,10 @@ export class GameService {
     this.upvoteProposedGoalURL =  apiBase + ROUTES.games.base + ROUTES.games.upvoteGoal;
   }
   createGame(gameBody: Requests.InsertGameRequest['game']) {
-    const username = this.userService.getUserData()?.user?.name;
+    const user = this.userService.getUserData(); 
+    const username = user?.user?.name;
+
+    console.log(username)
     if (!username) {
       this.toastrService.setToastrType('error');
       this.toastrService.setToastrMessage('User is not logged in');
@@ -45,6 +48,8 @@ export class GameService {
       },
       username: username,
     };
+
+ console.log({requestBody})
 
     return this.http
       .post<Responses.InsertGameResponse>(this.createGameURL, requestBody)

@@ -9,10 +9,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './interceptors/errorInterceptor.interceptor';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
 
 export const API_BASE = new InjectionToken<string>('api-base-token');
 export const PAGES_BASE = new InjectionToken<string>('pages-base-token'); //the base of the routing (used when sharing the link)
 export const STORAGE = new InjectionToken<Storage>('storage');
+export const DEFAULT_TIMEOUT = new InjectionToken<number>('default-timeout-for-http-requests',{factory:()=>5000})
 export const USERDATA_STORAGE_KEY = new InjectionToken<string>('storage-key', {
   factory: () => 'userData',
 });
@@ -26,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     ),
     //                           ^^     add this to use the input bindings of the url
     provideAnimations(),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(withInterceptors([loadingInterceptor,errorInterceptor])),
 
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
     // { provide: API_BASE, useValue: 'https://one000-game-api-staging.onrender.com/api/v1' },

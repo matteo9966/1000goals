@@ -8,6 +8,7 @@ import { ToastrService } from 'src/app/services/toastr.service';
 import { IsMyProposedPipe } from 'src/app/pipes/is-my-proposed.pipe';
 import { UpvoteRatioPipe } from 'src/app/pipes/upvote-ratio.pipe';
 import { GameService } from 'src/app/services/game.service';
+import { UpvotedPipe } from 'src/app/pipes/upvoted.pipe';
 
 @Component({
   selector: 'app-goal-list',
@@ -18,6 +19,7 @@ import { GameService } from 'src/app/services/game.service';
     IsReachedPipe,
     IsMyProposedPipe,
     UpvoteRatioPipe,
+    UpvotedPipe
   ],
   templateUrl: './goal-list.component.html',
   styleUrls: ['./goal-list.component.scss'],

@@ -4,7 +4,14 @@
   </svg>
   <!-- <span class="title">{{name}}</span> -->
   <div class="menu-btn" (click)="openMenu = true" *ngIf="!openMenu">
-    <app-nav-menu-btn ></app-nav-menu-btn>
+    <object
+      appSpin
+      data="assets/icons/refresh.svg"
+      width="40"
+      height="40"
+      class="refresh"
+    ></object>
+    <app-nav-menu-btn></app-nav-menu-btn>
   </div>
 </nav>
 <app-user-menu *ngIf="openMenu" (menuState)="openMenu = $event"></app-user-menu>

@@ -11,7 +11,6 @@
     <div *ngIf="isUpvote">
       2 points
     </div>
-
   </div>
 
   <div class="points-area">
@@ -47,9 +46,10 @@
 </ng-template>
 
 <ng-template #upvote>
-  <div *ngIf="withAction && !upvoted && !isMyProposed && show" class="action-section">
+  <div *ngIf="withAction  && !isMyProposed && show" class="action-section">
     <app-button (click)="onClickUpvote()">
-      <span class="button-content"> Upvote this goal </span>
+      <span class="button-content" *ngIf="upvoted">Remove your vote</span>
+      <span class="button-content" *ngIf="!upvoted"> Upvote this goal </span>
     </app-button>
   </div>
 </ng-template>

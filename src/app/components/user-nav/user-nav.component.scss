@@ -31,4 +31,15 @@
 .menu-btn{
     display: flex;
     height: 6rem;
+    align-items: center;
+    gap:4rem;
 }
+
+.refresh{
+    filter: invert(1);
+    transition: 1s transform ease-in;
+    // &:active{
+    //     transform: rotate(360deg);
+    // }
+}
+

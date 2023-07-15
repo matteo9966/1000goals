@@ -16,6 +16,8 @@ export class UserService {
   loggedIn$ = this.loggedInSub.asObservable();
   private insertReachedGoalURL = '';
   private changePasswordURL = '';
+  private refreshURL = '';
+
   private _userData: Responses.LoginResponse['data'] | null = null;
   constructor(
     @Inject(STORAGE) private storage: Storage,
@@ -23,7 +25,8 @@ export class UserService {
     @Inject(API_BASE) private apiBase: string
   ) {
     this.insertReachedGoalURL = `${this.apiBase}${ROUTES.users.base}${ROUTES.users.reachedGoal}`;
-    this.changePasswordURL = `${this.apiBase}${ROUTES.users.base}/change-password`; //TODO: update dei routes package
+    this.changePasswordURL = `${this.apiBase}${ROUTES.users.base}${ROUTES.users.changePassword}`; //TODO: update dei routes package
+    this.refreshURL = `${this.apiBase}${ROUTES.users.base}/refresh/:id`; //TODO: replace
   }
 
   clearUser() {
@@ -105,5 +108,13 @@ export class UserService {
           }
         })
       );
+  }
+
+  refreshGame() {
+    const gameId = this.getUserData()?.game?.id;
+
+    if (!gameId) return;
+    const refreshurl = this.refreshURL.replace(':id', gameId);
+    return this.http.get<Responses.RefreshResponse>(refreshurl);
   }
 }

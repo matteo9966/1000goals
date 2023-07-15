@@ -7,7 +7,8 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ToastrService } from '../services/toastr.service';
-import { EMPTY, catchError } from 'rxjs';
+import { EMPTY, TimeoutError, catchError, timeout } from 'rxjs';
+import { DEFAULT_TIMEOUT } from '../app.config';
 
 const ERROR_MESSAGES = {
   serverError: 'Server error, retry later',
@@ -20,7 +21,9 @@ export const errorInterceptor: HttpInterceptorFn = (
 ) => {
   let toastrMessage = '';
   const toastrService = inject(ToastrService);
+  const defaultTimeout = inject(DEFAULT_TIMEOUT);
   return next(req).pipe(
+    timeout(defaultTimeout || 10000),
     catchError((error) => {
       if (error instanceof HttpErrorResponse) {
         const status = error.status;
@@ -36,6 +39,8 @@ export const errorInterceptor: HttpInterceptorFn = (
         } else {
           toastrMessage = ERROR_MESSAGES.genericError;
         }
+      } else if (error instanceof TimeoutError) {
+        toastrMessage = 'Request timed out,something went wrong!';
       } else {
         toastrMessage = ERROR_MESSAGES.genericError;
       }

@@ -8,11 +8,20 @@ import { STORAGE, USERDATA_STORAGE_KEY } from './app.config';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 import { UserService } from './services/user.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MainHeaderComponent, ToastrComponent,FooterComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    MainHeaderComponent,
+    ToastrComponent,
+    FooterComponent,
+    SpinnerComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -20,8 +29,9 @@ export class AppComponent implements OnInit {
   title = '1000goals-frontend';
   toastrService = inject(ToastrService);
   storage = inject(STORAGE);
-  userService = inject(UserService)
+  userService = inject(UserService);
   userDataStorageKey = inject(USERDATA_STORAGE_KEY);
+  loadingService = inject(LoadingService);
   constructor() {}
   ngOnInit(): void {
     if (this.storage) {
@@ -31,11 +41,12 @@ export class AppComponent implements OnInit {
           const userData: LoginResponseBody = JSON.parse(user);
           if (userData) {
             //lets validate the userdata before setting it
-            this.userService.setUserData(userData)
+            this.userService.setUserData(userData);
           }
         } catch (error) {}
       }
     }
+
   }
 
   get toastrMessage() {
@@ -48,9 +59,7 @@ export class AppComponent implements OnInit {
     return this.toastrService.showToastr$;
   }
 
-  get userdata(){
-    return this.userService.getUserData()
+  get userdata() {
+    return this.userService.getUserData();
   }
 }
-
-

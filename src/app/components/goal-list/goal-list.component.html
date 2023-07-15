@@ -1,7 +1,17 @@
-<div class="goal-list" *ngIf="list.length>0;else emptylist">
-    <app-goal-card *ngFor="let goal of list" [goal]="goal" (clickOnGoal)="clickedOnGoal($event)" [reached]="goal?.id|isReached:userReachedGoals" [withAction]="withAction" [isMyProposed]="goal|isMyProposed:proposedGoals:username" [actionType]="actionType" [upvoteRatio]="goal|upvoteRatio:proposedGoals:numberOfPlayers"></app-goal-card>
+<div class="goal-list" *ngIf="list.length > 0; else emptylist">
+  <app-goal-card
+    *ngFor="let goal of list"
+    [goal]="goal"
+    (clickOnGoal)="clickedOnGoal($event)"
+    [reached]="goal?.id | isReached : userReachedGoals"
+    [withAction]="withAction"
+    [isMyProposed]="goal | isMyProposed : proposedGoals : username"
+    [upvoted]="goal|upvotedPipe:proposedGoals:username"
+    [actionType]="actionType"
+    [upvoteRatio]="goal | upvoteRatio : proposedGoals : numberOfPlayers"
+  ></app-goal-card>
 </div>
 
 <ng-template #emptylist>
-    <p>Nothing to show</p>
+  <p>Nothing to show</p>
 </ng-template>
