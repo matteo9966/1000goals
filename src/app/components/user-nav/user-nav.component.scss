@@ -35,6 +35,13 @@
     gap:4rem;
 }
 
+.btn-container{
+    height: 6rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .refresh{
     filter: invert(1);
     transition: 1s transform ease-in;

@@ -86,6 +86,27 @@ export class UserService {
     );
   }
 
+  removeReachedGoal(goalId: string) {
+    const gameId = this.getUserData()?.game?.id;
+    const name = this.getUserData()?.user?.name;
+    if (!gameId || !name) {
+      return EMPTY;
+    }
+
+    const request: Requests.insertReachedGoalRequest = {
+      gameId: gameId,
+      goalId: goalId,
+      name: name,
+    };
+
+    return this.http.delete<Responses.InsertReachedGoalResponse & {data:{deleted:boolean}}>(
+      this.insertReachedGoalURL,
+      {
+        body: request,
+      }
+    );
+  }
+
   changePassword(password: string, username: string) {
     const changePasswordRequest: changePasswordRequest = {
       newPassword: password,

@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoalCardComponent } from '../goal-card/goal-card.component';
-import { Goal, ProposedGoal, User } from '1000-goals-types';
+import { Goal } from '1000-goals-types';
 import { UserService } from 'src/app/services/user.service';
 import { IsReachedPipe } from 'src/app/pipes/is-reached.pipe';
-import { ToastrService } from 'src/app/services/toastr.service';
 import { IsMyProposedPipe } from 'src/app/pipes/is-my-proposed.pipe';
 import { UpvoteRatioPipe } from 'src/app/pipes/upvote-ratio.pipe';
 import { GameService } from 'src/app/services/game.service';
@@ -19,7 +18,7 @@ import { UpvotedPipe } from 'src/app/pipes/upvoted.pipe';
     IsReachedPipe,
     IsMyProposedPipe,
     UpvoteRatioPipe,
-    UpvotedPipe
+    UpvotedPipe,
   ],
   templateUrl: './goal-list.component.html',
   styleUrls: ['./goal-list.component.scss'],
@@ -27,7 +26,6 @@ import { UpvotedPipe } from 'src/app/pipes/upvoted.pipe';
 export class GoalListComponent {
   constructor(
     private userService: UserService,
-    private toastrService: ToastrService,
     private gameService: GameService
   ) {}
   @Input() list: Goal[] = [];
@@ -37,6 +35,24 @@ export class GoalListComponent {
 
   private clickedReachedGoal(goalId: string | null) {
     if (!goalId) return;
+    //check if the user reachedgoals includes the goalid if it includes the goal, remove it
+
+    if (userHasGoal(this.userReachedGoals, goalId)) {
+      // this.userService REMOVE GOAL
+      this.userService.removeReachedGoal(goalId).subscribe((response) => {
+        const deleted = response?.data?.deleted;
+        if (!deleted) {
+          return;
+        }
+        this.userService.patchUserData((userdata) => {
+          const withoutgoal = userdata.user.goals.filter((g) => g !== goalId); //remove the goal
+          userdata.user.goals = withoutgoal;
+          return userdata;
+        });
+      });
+      return;
+    }
+
     this.userService.insertReachedGoal(goalId).subscribe((response) => {
       if (!response) {
         return;
@@ -82,15 +98,6 @@ export class GoalListComponent {
     }
   }
 
-  //check if goal with this id is mine
-
-  // isMyProposed(goal: Goal, proposedGoals: ProposedGoal[], username: string) {
-  //   // const proposedGoals = this.userService.getUserData()?.game?.proposedGoals;
-  //   const proposedGoal = proposedGoals?.find((g) => g.id === goal.id);
-  //   const myproposed =
-  //     proposedGoal?.proposedBy === this.userService.getUserData()?.user?.name;
-  //   return myproposed;
-  // }
 
   get proposedGoals() {
     return this.userService.getUserData()?.game?.proposedGoals;
@@ -103,4 +110,8 @@ export class GoalListComponent {
   get numberOfPlayers() {
     return this.userService.getUserData()?.game?.players?.length || 0;
   }
+}
+
+function userHasGoal(reachedGoals: string[] = [], goal: string) {
+  return reachedGoals.includes(goal);
 }
