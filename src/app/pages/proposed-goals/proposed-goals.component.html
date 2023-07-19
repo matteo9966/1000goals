@@ -3,16 +3,12 @@
     (click)="onClickMenu('proposed')"
     class="button"
     [class.active]="selected == 'proposed'"
-  >
-    Proposed goals
-  </button>
+  >Proposed goals</button>
   <button
     (click)="onClickMenu('form')"
     class="button"
     [class.active]="selected == 'form'"
-  >
-    Propose
-  </button>
+  >Propose</button>
 </div>
 <ng-template [ngTemplateOutlet]="showedTemplate"></ng-template>
 <ng-template #proposedgoals>
