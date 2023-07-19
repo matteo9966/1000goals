@@ -74,6 +74,7 @@ export class NewGameComponent {
     if (this.form.invalid) {
       return;
     }
+    this.disabledSubmit=true;
     const name = this.nameControl?.value;
     const description = this.descriptionControl?.value || '';
     this.gameService.createGame({ description, name }).pipe(finalize((()=>{
