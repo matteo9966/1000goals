@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
         'Missing credentials, provide email and password'
       );
       this.toastrService.setSowToastr(true);
+      return
     }
     this.disabledLogin = true;
     this.loginService

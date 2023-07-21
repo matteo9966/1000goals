@@ -5,6 +5,6 @@
    </div>
    <div class="buttons-area">
     <app-button (click)="onClickBack()">Back</app-button>
-    <app-button [disabled]="disabledLogin" (click)="onClickLogin()">Login</app-button>
+    <app-button [disabled]="disabledLogin" (click)="onClickLogin()" aria-label="login">Login</app-button>
    </div>
 </app-form>
