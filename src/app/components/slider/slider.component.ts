@@ -19,8 +19,10 @@ export class SliderComponent {
 
   @Input()
   set value(val: number) {
+    console.log(val)
     this._value = val;
     this.valueChange.emit(val);
+    console.log('EMITTING')
   }
   get value() {
     return this._value;

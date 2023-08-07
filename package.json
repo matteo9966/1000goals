@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 192.168.1.178 --disable-host-check",
-    "start-https": "ng serve --host 192.168.1.178 --ssl --ssl-key ./ssl/server.key --ssl-cert ./ssl/server.crt",
+    "start-https": "ng serve --host 192.168.56.1 --ssl --ssl-key ./ssl/server.key --ssl-cert ./ssl/server.crt",
     "build": "ng build --output-path docs --base-href /1000goals/ ",
     "make404": "./create404.sh",
     "build-4-deploy": "npm run build && npm run make404",

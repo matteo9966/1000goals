@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './interceptors/errorInterceptor.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
+// import { authorizationInterceptor } from './interceptors/authorization.interceptor';
 
 export const API_BASE = new InjectionToken<string>('api-base-token');
 export const PAGES_BASE = new InjectionToken<string>('pages-base-token'); //the base of the routing (used when sharing the link)
@@ -28,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     ),
     //                           ^^     add this to use the input bindings of the url
     provideAnimations(),
-    provideHttpClient(withInterceptors([loadingInterceptor,errorInterceptor])),
+    provideHttpClient(withInterceptors([/* authorizationInterceptor([]), */loadingInterceptor,errorInterceptor])),
 
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
     // { provide: API_BASE, useValue: 'https://one000-game-api-staging.onrender.com/api/v1' },

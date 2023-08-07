@@ -3,7 +3,7 @@ import {
   ComponentFixture,
   flush,
   fakeAsync,
-  tick
+  tick,
 } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { STORAGE, USERDATA_STORAGE_KEY } from 'src/app/app.config';
@@ -15,6 +15,7 @@ import { DebugElement } from '@angular/core';
 import { of } from 'rxjs';
 import { LoginResponse } from '1000-goals-types/src/Responses';
 import { By } from '@angular/platform-browser';
+import { HttpResponse } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let userServiceSpy: jasmine.SpyObj<Partial<UserService>>;
@@ -26,14 +27,38 @@ describe('LoginComponent', () => {
   let debugElement: DebugElement;
   let routerSpy: jasmine.SpyObj<Router>;
 
-  function setupValidForm(){
+  function setupValidForm() {
     const nameControl = component.form.get('name');
     const passwordControl = component.form.get('password');
     loginServiceSpy.login.and.returnValue(
-      of({ data: true, error: null } as unknown as LoginResponse)
+      of({
+        headers: {
+          Authorization: 'bearer token',
+          get(str: string) {
+            this[str as 'Authorization'];
+          },
+        },
+        body: { data: true, error: null },
+      } as unknown as HttpResponse<LoginResponse>)
     );
     nameControl!.setValue('test');
     passwordControl!.setValue('password-test');
+  }
+
+  function setupWithResponseWithoutAuthorization() {
+    const nameControl = component.form.get('name');
+    const passwordControl = component.form.get('password');
+    nameControl!.setValue('valid-name');
+    passwordControl?.setValue('valid-password');
+    loginServiceSpy.login.and.returnValue(
+      of({
+        headers: {
+          get(){
+            return null
+          }
+        },
+      } as unknown as HttpResponse<LoginResponse>)
+    );
   }
 
   beforeEach(() => {
@@ -43,7 +68,11 @@ describe('LoginComponent', () => {
       'getUserData',
     ]);
     loginServiceSpy = jasmine.createSpyObj('loginService', ['login']);
-    toastrServiceSpy = jasmine.createSpyObj('toastrService', ['setToastrType','setToastrMessage','setSowToastr']);
+    toastrServiceSpy = jasmine.createSpyObj('toastrService', [
+      'setToastrType',
+      'setToastrMessage',
+      'setSowToastr',
+    ]);
     storageSpy = jasmine.createSpyObj('storage', ['setItem']);
     routerSpy = jasmine.createSpyObj('router', ['navigate']);
     (<jasmine.Spy>userServiceSpy!.getUserData!).and.returnValue(true);
@@ -97,7 +126,6 @@ describe('LoginComponent', () => {
   });
 
   it('submitting valid form should call login service with the test name and password', fakeAsync(() => {
- 
     fixture.detectChanges();
     setupValidForm();
 
@@ -113,14 +141,14 @@ describe('LoginComponent', () => {
     );
   }));
 
-  it('should disable the button when user clicks Login',fakeAsync(()=>{
+  it('should disable the button when user clicks Login', fakeAsync(() => {
     fixture.detectChanges();
     setupValidForm();
     flush();
     fixture.detectChanges();
     const loginButton = debugElement.query(By.css('[aria-label="login"]'));
     loginButton.nativeElement.click();
-    tick(500)
+    tick(500);
     fixture.detectChanges();
     const button = loginButton.nativeElement.querySelector('button');
     expect(button).toBeTruthy();
@@ -128,18 +156,21 @@ describe('LoginComponent', () => {
     flush();
     fixture.detectChanges();
     expect(button.disabled).toBeFalsy();
-  }))
+  }));
 
-
-  it('precompiles the input if it recieves password and username as inputs from the queryString',()=>{
-    component.passwordFromQueryString='password-from-query-string';
-    component.usernameFromQueryString='username-from-query-string';
+  it('precompiles the input if it recieves password and username as inputs from the queryString', () => {
+    component.passwordFromQueryString = 'password-from-query-string';
+    component.usernameFromQueryString = 'username-from-query-string';
     fixture.detectChanges();
-    expect(component.form.get('name')?.value).toBe('username-from-query-string');
-    expect(component.form.get('password')?.value).toBe('password-from-query-string');
-  })
+    expect(component.form.get('name')?.value).toBe(
+      'username-from-query-string'
+    );
+    expect(component.form.get('password')?.value).toBe(
+      'password-from-query-string'
+    );
+  });
 
-  //form validation 
+  //form validation
   it('should be invalid form if missing name', () => {
     fixture.detectChanges();
     const nameControl = component.form.get('name');
@@ -148,7 +179,19 @@ describe('LoginComponent', () => {
     component.onClickLogin();
     expect(component.form.valid).toBeFalsy();
     expect(toastrServiceSpy.setToastrType).toHaveBeenCalledWith('error');
-  }
-  )
+  });
 
+  it('should show a toastr with an error if the response has no authorization error',fakeAsync( () => {
+    fixture.detectChanges();
+    setupWithResponseWithoutAuthorization(); // setup the httploginspy wo authorization
+    component.onClickLogin();
+    expect(component.nameControl?.valid).toBeTrue()
+    expect(component.passwordControl?.valid).toBeTrue();
+    flush(); //clear timers etc
+    expect(toastrServiceSpy.setToastrType).toHaveBeenCalledOnceWith('error');
+    expect(toastrServiceSpy.setToastrMessage).toHaveBeenCalledWith(
+      'Error while logging in'
+    );
+    expect(toastrServiceSpy.setSowToastr).toHaveBeenCalled();
+  }));
 });

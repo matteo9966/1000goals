@@ -11,6 +11,8 @@ import { DebugElement, Component } from '@angular/core';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 import { NavMenuBtnComponent } from '../nav-menu-btn/nav-menu-btn.component';
 import { UserService } from 'src/app/services/user.service';
+import { defer } from 'rxjs';
+import { RefreshResponse } from '1000-goals-types/src/Responses';
 
 @Component({
   selector: 'app-user-menu',
@@ -19,18 +21,30 @@ import { UserService } from 'src/app/services/user.service';
 })
 class UserMenuMock {}
 
+/**
+ * Create async observable that emits-once and completes
+ * after a JS engine turn
+ */
+export function asyncData<T>(data: T) {
+  return defer(() => Promise.resolve(data));
+}
+
 describe('UserNavComponent', () => {
   let fixture: ComponentFixture<UserNavComponent>;
   let component: UserNavComponent;
   let debugElement: DebugElement;
-
+  let userServiceSpy: jasmine.SpyObj<UserService>;
   beforeEach(async () => {
+    userServiceSpy = jasmine.createSpyObj<UserService>('UserService', [
+      'refreshGame',
+      'patchUserData',
+    ]);
     await TestBed.configureTestingModule({
       imports: [UserNavComponent],
       providers: [
         {
           provide: UserService,
-          useValue: {},
+          useValue: userServiceSpy,
         },
       ],
     })
@@ -65,5 +79,26 @@ describe('UserNavComponent', () => {
     const userMenu = debugElement.query(By.css('.the-mock-menu'));
     expect(userMenu).toBeTruthy();
     expect(userMenu.nativeElement.textContent).toBe('mock menu'); //using the overridden component
+  }));
+  it('should have a refresh button', () => {
+    const refreshbutton = debugElement.query(
+      By.css('[aria-label="refresh-button"]')
+    );
+    expect(refreshbutton).toBeTruthy();
+  });
+  it('should update userdata when clicking on refresh', fakeAsync(() => {
+    const data: any = { game: true };
+    const asyncObservable = asyncData({ data: data } as RefreshResponse);
+    const refreshbutton = debugElement.query(
+      By.css('[aria-label="refresh-button"]')
+    );
+
+    userServiceSpy.refreshGame.and.returnValue(asyncObservable);
+    //the refresh must return an observable
+
+    refreshbutton.nativeElement.click();
+    flush();
+    fixture.detectChanges();
+    expect(userServiceSpy.patchUserData).toHaveBeenCalledTimes(1);
   }));
 });

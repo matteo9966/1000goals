@@ -94,21 +94,29 @@ export class LoginComponent implements OnInit {
       })
       .pipe(
         finalize(() => {
-          setTimeout(() => {
-            this.disabledLogin = false;
-            if (this.userService.getUserData()) {
+          if(this.userService.getUserData()){
+            setTimeout(() => {
+              this.disabledLogin = false;
               this.router.navigate(['/'+ROUTES.user.base]);
-            }
-          }, 1000);
+            }, 1000);
+          }
         })
       )
-      .subscribe((data) => {
-        if (data?.data) {
-          this.userService.setUserData(data.data);
+      .subscribe((response) => {
+         const auhtHeader = response.headers.get('Authorization');
+         if(!auhtHeader){
+           this.toastrService.setToastrType('error');
+           this.toastrService.setToastrMessage('Error while logging in');
+           this.toastrService.setSowToastr(true);
+           return;
+         }
+         this.loginService.sessionToken=auhtHeader;
+        if (response.body) {
+          this.userService.setUserData(response.body.data);
           this.userService.setLoginStatus(true);
-          const parsedData = stringify(data.data);
+          const parsedData = stringify(response.body.data);
           if(parsedData){
-            this.storage.setItem(this.userStorageKey, JSON.stringify(data.data));
+            this.storage.setItem(this.userStorageKey, JSON.stringify(response.body.data));
           }
         }
       });

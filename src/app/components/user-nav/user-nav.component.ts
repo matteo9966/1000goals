@@ -30,7 +30,6 @@ export class UserNavComponent {
   }
 
   onClickRefresh() {
-    console.log('click refresh')
     this.userService.refreshGame()?.subscribe((response) => {
       if (response?.data && response.data?.game) {
         this.userService.patchUserData((data) => {
