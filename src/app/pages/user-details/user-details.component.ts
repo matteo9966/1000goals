@@ -1,23 +1,18 @@
 import {
   Component,
-  ElementRef,
   Inject,
   Input,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoalListComponent } from 'src/app/components/goal-list/goal-list.component';
 import { UserService } from 'src/app/services/user.service';
-import { Goal, User } from '1000-goals-types';
-import { Game } from '1000-goals-types/src/Game.interface';
+import { Goal } from '1000-goals-types';
 import { calculatePoints } from 'src/app/utils/calculatePoints';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 import { ButtonComponent } from 'src/app/components/button/button.component';
 import { PAGES_BASE } from 'src/app/app.config';
 import { ROUTES } from 'src/app/routes/routes';
-import { Observable, fromEvent, of, timer } from 'rxjs';
-import { switchMap, mergeWith, timeout, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-details',
@@ -37,7 +32,7 @@ export class UserDetailsComponent implements OnInit {
     @Inject(PAGES_BASE) private pagesBase: string
   ) {}
   ngOnInit(): void {
-    this.list = setList('goals', this.id, this.userService.getUserData());
+    this.list = userDetailsUtils.setList('goals', this.id, this.userService.getUserData());
   }
   @Input() id: string | null = null; //its a urlparam
 
@@ -70,7 +65,7 @@ export class UserDetailsComponent implements OnInit {
   clickList(listType: 'proposed' | 'goals') {
     if (listType === this.selectedList) return;
     this.selectedList = listType;
-    this.list = setList(
+    this.list = userDetailsUtils.setList(
       this.selectedList,
       this.id,
       this.userService.getUserData()
@@ -98,6 +93,10 @@ export class UserDetailsComponent implements OnInit {
 
 
 
+}
+
+export const userDetailsUtils = {
+  setList:setList
 }
 
 function setList(

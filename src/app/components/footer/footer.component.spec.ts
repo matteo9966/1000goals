@@ -2,10 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
-//                vvvvv
-//TODO: using the async angular  utility?
-//                ^^^^^           
+     
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
