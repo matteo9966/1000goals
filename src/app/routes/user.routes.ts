@@ -18,7 +18,6 @@ export const userRoutes: Routes = [
             ['/', ROUTES.user.base, '/', ROUTES.user.newgame].join('')
           ),
         ],
-        //TODO: add a can activate that navigates to new game if user is admin and there is no game
       },
       {
         path: ROUTES.user.goals,
@@ -68,6 +67,7 @@ export const userRoutes: Routes = [
           import('../pages/new-game/new-game.component').then(
             (c) => c.NewGameComponent
           ),
+          //TODO : can activate only if user is ADMIN and there is no game!
       },
      
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
