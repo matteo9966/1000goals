@@ -1,16 +1,25 @@
 import { canActivateCreateGameGuard } from './canActivateCreateGame.guard';
 import { UserService } from '../services/user.service';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import {
+  TestBed,
+  ComponentFixture,
+  flush,
+  fakeAsync,
+} from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 import { Router, RouterOutlet, provideRouter } from '@angular/router';
 import { provideLocationMocks } from '@angular/common/testing';
-
+import { RouterTestingHarness } from '@angular/router/testing';
+import { Location } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { By } from '@angular/platform-browser';
 @Component({
   providers: [],
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   standalone: true,
-  template: `<router-outlet></router-outlet>`,
+  template: ` <a routerLink="/create-game">Create the game</a>
+    <router-outlet></router-outlet>`,
   selector: 'app-dummy-root',
 })
 class DummyRootComponent {}
@@ -23,6 +32,86 @@ class DummyRootComponent {}
   selector: 'app-create-game',
 })
 class CreateGameComponentTest {}
+
+describe('canActivateCreateGame (router testing harness)', () => {
+  async function setup(user: LoginResponseBody) {
+    TestBed.configureTestingModule({
+      providers: [
+        provideRouter([
+          { path: '', component: DummyRootComponent },
+          {
+            path: 'create-game',
+            component: CreateGameComponentTest,
+            canActivate: [canActivateCreateGameGuard],
+          },
+        ]),
+        provideLocationMocks(),
+        {
+          provide: UserService,
+          useValue: {
+            user,
+            getUserData() {
+              return this.user;
+            },
+          },
+        },
+      ],
+    });
+    const harness = await RouterTestingHarness.create();
+    const location = TestBed.inject(Location);
+    function clickOnRootLink() {
+      const link = harness.routeDebugElement?.query(By.css('a'))!;
+      link.nativeElement.click();
+    }
+    function advance() {
+      flush();
+      harness.detectChanges();
+    }
+
+    return {
+      harness,
+      location,
+      advance,
+      clickOnRootLink,
+    };
+  }
+
+  it('should not navigate if user is not ADMIN', fakeAsync(async () => {
+    const userData = {
+      user: {
+        role: 'user',
+      },
+      game: {},
+    } as LoginResponseBody;
+    const { harness, location, advance, clickOnRootLink } = await setup(
+      userData
+    );
+    await harness.navigateByUrl('/');
+    clickOnRootLink();
+    advance();
+    expect(location.path())
+      .withContext('the location must contain create-game in the path')
+      .not.toContain('create-game');
+  }));
+  it('should  navigate if user is ADMIN and there is no game', fakeAsync(async () => {
+    const userData = {
+      user: {
+        role: 'admin',
+      },
+      game: {},
+    } as LoginResponseBody;
+    const { harness, location, advance, clickOnRootLink } = await setup(
+      userData
+    );
+    await harness.navigateByUrl('/');
+    clickOnRootLink();
+    advance();
+    expect(location.path())
+      .withContext('the location must contain create-game in the path')
+      .toContain('create-game');
+  }));
+  
+});
 
 describe('canActivateCreateGame (integrated)', () => {
   let fixture: ComponentFixture<DummyRootComponent>;
@@ -107,7 +196,9 @@ describe('canActivateCreateGameGuard (shallow)', () => {
       } as unknown as LoginResponseBody;
       setupTest(data);
 
-      const result = TestBed.runInInjectionContext(()=>canActivateCreateGameGuard({} as any, {} as any));
+      const result = TestBed.runInInjectionContext(() =>
+        canActivateCreateGameGuard({} as any, {} as any)
+      );
       expect(result).toBeTrue();
     });
     it('should return false if there is a game', () => {
@@ -121,7 +212,9 @@ describe('canActivateCreateGameGuard (shallow)', () => {
       } as unknown as LoginResponseBody;
       setupTest(data);
 
-      const result = TestBed.runInInjectionContext(()=>canActivateCreateGameGuard({} as any, {} as any));
+      const result = TestBed.runInInjectionContext(() =>
+        canActivateCreateGameGuard({} as any, {} as any)
+      );
       expect(result).toBeFalse();
     });
   });
@@ -138,7 +231,9 @@ describe('canActivateCreateGameGuard (shallow)', () => {
       } as unknown as LoginResponseBody;
       setupTest(data);
 
-      const result = TestBed.runInInjectionContext(()=>canActivateCreateGameGuard({} as any, {} as any));
+      const result = TestBed.runInInjectionContext(() =>
+        canActivateCreateGameGuard({} as any, {} as any)
+      );
       expect(result).toBeFalse();
     });
   });

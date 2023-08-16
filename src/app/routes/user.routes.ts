@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ROUTES } from './routes';
 import { canActivateDashboard } from '../guards/canActivateDashboard.guard';
+import { canActivateCreateGameGuard } from '../guards/canActivateCreateGame.guard';
 export const userRoutes: Routes = [
   {
     path: '',
@@ -67,9 +68,10 @@ export const userRoutes: Routes = [
           import('../pages/new-game/new-game.component').then(
             (c) => c.NewGameComponent
           ),
-          //TODO : can activate only if user is ADMIN and there is no game!
+        canActivate: [canActivateCreateGameGuard],
+        //TODO : can activate only if user is ADMIN and there is no game!
       },
-     
+
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
   },
