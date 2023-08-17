@@ -1,4 +1,8 @@
-<div class="home">
-    <app-button (click)="onClickLogin()">Login</app-button>
-    <app-button (click)="onClickSignup()">Signup</app-button>
+<div class="image-section">
+  <img src="/assets/backgrounds/main-avatar.gif" alt="the avatar" />
+</div>
+<div class="home" [@listButtons]="true">
+
+  <app-button (click)="button.action()" *ngFor="let button of buttons">{{button.label}}</app-button>
+  <!-- <app-button (click)="">Signup</app-button> -->
 </div>

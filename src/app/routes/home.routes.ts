@@ -18,6 +18,9 @@ export const homeRoute: Routes = [
           import('../pages/home-cta/home-cta.component').then(
             (c) => c.HomeCtaComponent
           ),
+          data:{
+            animation:'cta-animation'
+          }
       },
       {
         path: ROUTES.home.login,
@@ -26,6 +29,9 @@ export const homeRoute: Routes = [
           import('../pages/login/login.component').then(
             (c) => c.LoginComponent
           ),
+          data:{
+            animation:'login-animation'
+          }
       },
       {
         path: ROUTES.home.signup,
@@ -34,6 +40,9 @@ export const homeRoute: Routes = [
           import('../pages/signup-page/signup-page.component').then(
             (c) => c.SignupPageComponent
           ),
+          data:{
+            animation:'signup-animation'
+          }
       },
       {
         path: '',

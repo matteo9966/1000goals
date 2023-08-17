@@ -1,3 +1,4 @@
+@use '../style/variables' as v;
 :host {
   width: 100%;
   display: flex;
@@ -22,7 +23,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../assets/backgrounds/main-bg.jpg');
+    background-image: v.$main-background;
     position: relative;
 }
 

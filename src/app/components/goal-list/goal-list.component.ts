@@ -8,7 +8,15 @@ import { IsMyProposedPipe } from 'src/app/pipes/is-my-proposed.pipe';
 import { UpvoteRatioPipe } from 'src/app/pipes/upvote-ratio.pipe';
 import { GameService } from 'src/app/services/game.service';
 import { UpvotedPipe } from 'src/app/pipes/upvoted.pipe';
-
+import {
+  transition,
+  trigger,
+  style,
+  query,
+  group,
+  animate,
+  stagger,
+} from '@angular/animations';
 @Component({
   selector: 'app-goal-list',
   standalone: true,
@@ -22,6 +30,19 @@ import { UpvotedPipe } from 'src/app/pipes/upvoted.pipe';
   ],
   templateUrl: './goal-list.component.html',
   styleUrls: ['./goal-list.component.scss'],
+  animations:[
+    trigger('listAnimation', [
+      transition('* => *', [ // each time the binding value changes
+   
+        query(':enter', [
+          style({ opacity: 0 }),
+          stagger(100, [
+            animate('0.5s', style({ opacity: 1 }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ]
 })
 export class GoalListComponent {
   constructor(

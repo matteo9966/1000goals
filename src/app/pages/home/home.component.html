@@ -1,7 +1,7 @@
 <header class="header">
   <app-main-header></app-main-header>
 </header>
-<main class="main">
+<main class="main" [@pageAnimation]="getRouteAnimationData()">
   <router-outlet></router-outlet>
 </main>
 <footer></footer>

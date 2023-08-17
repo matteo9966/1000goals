@@ -1,4 +1,4 @@
-<div class="goal-list" *ngIf="list.length > 0; else emptylist">
+<div class="goal-list" *ngIf="list.length > 0; else emptylist" [@listAnimation]="list.length">
   <app-goal-card
     *ngFor="let goal of list"
     [goal]="goal"

@@ -3,6 +3,15 @@ import { CommonModule } from '@angular/common';
 import { PieChartComponent } from 'src/app/components/pie-chart/pie-chart.component';
 import { GoalsListContainerComponent } from 'src/app/components/goals-list-container/goals-list-container.component';
 import { UserService } from 'src/app/services/user.service';
+import {
+  query,
+  trigger,
+  style,
+  stagger,
+  animate,
+  state,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +19,8 @@ import { UserService } from 'src/app/services/user.service';
   imports: [CommonModule, PieChartComponent, GoalsListContainerComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  animations: [
+  ],
 })
 export class DashboardComponent implements OnInit {
   constructor(private userservice: UserService) {}

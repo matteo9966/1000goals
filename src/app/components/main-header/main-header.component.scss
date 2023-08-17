@@ -14,11 +14,15 @@
   }
   .slogan {
     text-transform: capitalize;
-    @include m.font-small;
+    @include m.font-x-x-small;
   }
 
   .good-luck {
     @include m.font-small;
+  }
+  .main-title{
+    font-size: 4rem;
+    margin-bottom: 0;
   }
 
 }
