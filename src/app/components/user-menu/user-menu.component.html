@@ -6,7 +6,16 @@
       <use xlink:href="assets/logos/logo.svg#logo"></use>
     </svg>
   </div>
-  <div class="menu-body">
+  <div class="menu-body" [@cardsAnimation]="true">
+
+    <div class="menu-item"  (click)="navigateTo(linkToUserHome)">
+      <svg class="icon"  >
+        <use  xlink:href="assets/icons/menuicons.svg#icon-home"></use>
+      </svg>
+    
+    <span class="icon-title">Home</span>
+  </div>
+
     <div class="menu-item" (click)="navigateTo(linkToGoals)" aria-label="goals-button">
         <svg class="icon" >
           <use xlink:href="assets/icons/menuicons.svg#icon-key"></use>
@@ -21,13 +30,7 @@
      
       <span class="icon-title">Proposed Goals</span>
     </div>
-    <div class="menu-item"  (click)="navigateTo(linkToUserHome)">
-        <svg class="icon"  >
-          <use  xlink:href="assets/icons/menuicons.svg#icon-home"></use>
-        </svg>
-      
-      <span class="icon-title">Home</span>
-    </div>
+    
   
     <div class="menu-item" (click)="navigateTo(linkToLeaderboard)">
         <svg class="icon" >

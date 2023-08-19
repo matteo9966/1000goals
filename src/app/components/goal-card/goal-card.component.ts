@@ -31,7 +31,6 @@ export class GoalCardComponent implements OnInit {
   @Input() upvoted: boolean = false; //upvoted so don't show
   @Input() isMyProposed:boolean=false;
   @Input() upvoteRatio:string="0/0"; //this is the ratio of number of votes / number of players in the game
-  @Output() clickReachedGoal = new EventEmitter<string | null>();
   @Output() clickOnGoal = new EventEmitter<string | null>();
   @ViewChild('buttoncontainer', { read: ViewContainerRef,static:true })
   container!: ViewContainerRef;
@@ -46,13 +45,10 @@ export class GoalCardComponent implements OnInit {
     this.show = !this.show;
   }
 
-  onClickReachedGoal() {
-    this.clickReachedGoal.emit(this.goal.id);
-    this.clickOnGoal.emit(this.goal.id);
-  }
 
-  onClickUpvote() {
-    this.clickOnGoal.emit(this.goal.id);
+
+  onClickGoal(){
+    this.clickOnGoal.emit(this.goal.id)
   }
 
   ngOnInit(): void {

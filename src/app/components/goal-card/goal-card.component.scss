@@ -83,6 +83,28 @@
   }
 }
 
+.points-badge-modern{
+  position: absolute;
+  width: 80%;
+  height: 2rem;
+  top: 0.1rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: var(--border-radius);
+  right: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+
+  &.reached-badge{
+    background-color: var(--success-primary);
+    color: white;
+    font-weight: bold;
+  }
+}
+
 .upvotes-badge{
   background-color: var(--goal-card-badge-bg);
   clip-path: polygon(50% 0%, 72% 23%, 98% 35%, 84% 64%, 79% 91%, 52% 84%, 21% 91%, 16% 61%, 2% 35%, 29% 22%);

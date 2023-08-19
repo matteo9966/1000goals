@@ -4,6 +4,14 @@ import { CloseBtnComponent } from '../close-btn/close-btn.component';
 import { Router, RouterModule } from '@angular/router';
 import { ROUTES } from 'src/app/routes/routes';
 import { LogoutService } from 'src/app/services/logout.service';
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-user-menu',
@@ -11,6 +19,27 @@ import { LogoutService } from 'src/app/services/logout.service';
   imports: [CommonModule, CloseBtnComponent, RouterModule],
   templateUrl: './user-menu.component.html',
   styleUrls: ['./user-menu.component.scss'],
+  animations: [
+    trigger('cardsAnimation', [
+      transition(':enter', [
+        query('.menu-item', [
+          style({
+            opacity: 0,
+            transform:'scale(0)'
+          }),
+          stagger(100, [
+            animate(
+              200,
+              style({
+                opacity: 1,
+                transform:'scale(1)'
+              })
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class UserMenuComponent {
   router = inject(Router);

@@ -52,7 +52,7 @@ export class GoalListComponent {
   @Input() list: Goal[] = [];
   @Input() userReachedGoals: string[] = [];
   @Input() withAction: boolean = true;
-  @Input() actionType: 'upvote' | 'reached' = 'reached';
+  @Input() actionType: 'upvote' | 'reached' = 'reached'; //upvote => for proposed , reached => for goal list
 
   private clickedReachedGoal(goalId: string | null) {
     if (!goalId) return;
