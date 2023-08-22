@@ -34,6 +34,6 @@ export const appConfig: ApplicationConfig = {
     { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
     // { provide: API_BASE, useValue: 'https://one000-game-api-staging.onrender.com/api/v1' },
     { provide: STORAGE, useValue: sessionStorage },
-    { provide: PAGES_BASE, useValue: 'https://192.168.1.178:4200/' },
+    { provide: PAGES_BASE, useValue: 'https://192.168.56.1:4200' },
   ],
 };

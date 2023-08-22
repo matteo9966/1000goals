@@ -38,7 +38,7 @@
 </div>
 
 <ng-template #reachedgoal>
-  <div *ngIf="withAction  && show" class="action-section">
+  <div *ngIf="withAction  && show" class="action-section" [@showAction]="show">
     <app-button (click)="onClickGoal()">
       <span class="button-content" *ngIf="!reached"> I reached this goal </span>
       <span class="button-content" *ngIf="reached"> I did not reach this goal! </span>

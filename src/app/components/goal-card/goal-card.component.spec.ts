@@ -8,6 +8,9 @@ import {
 } from '@angular/core/testing';
 import { GoalCardComponent } from './goal-card.component';
 import { By } from '@angular/platform-browser';
+import {
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { delay, of } from 'rxjs';
 
 describe('GoalCardComponent tests', () => {
@@ -18,7 +21,7 @@ describe('GoalCardComponent tests', () => {
 
   function setupWFixture() {
     TestBed.configureTestingModule({
-      imports: [GoalCardComponent],
+      imports: [GoalCardComponent,NoopAnimationsModule],
     });
     const fixture = TestBed.createComponent(GoalCardComponent);
     return {
