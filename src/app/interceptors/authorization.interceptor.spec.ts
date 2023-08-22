@@ -30,7 +30,7 @@ describe('authorization interceptor', () => {
         {
           provide:LoginService,
           useValue: {
-            sessionToken: 'sessiontoken',
+            sessionToken: 'bearer sessiontoken',
           }
         }
       ],
@@ -52,7 +52,7 @@ describe('authorization interceptor', () => {
     const request = controller.expectOne(MOCKROUTES.withtoken);
     const authHeader = request.request.headers.get('Authorization');
     expect(authHeader).toBeDefined();
-    expect(authHeader).toContain('Bearer')
+    expect(authHeader).toContain('bearer')
     expect(authHeader).toContain('sessiontoken')
     request.flush({}, { status: 200, statusText: 'OK' }); 
    

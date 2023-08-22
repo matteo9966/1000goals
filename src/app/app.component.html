@@ -6,8 +6,8 @@
     <app-footer></app-footer>
   </footer>
 </div>
+<!-- *ngIf="toastrShow$ | async" -->
 <app-toastr
-  *ngIf="toastrShow$ | async"
   [message]="toastrMessage"
   [type]="toastrType"
 >

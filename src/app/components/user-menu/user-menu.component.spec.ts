@@ -11,6 +11,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import { LogoutService } from 'src/app/services/logout.service';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   standalone: true,
@@ -30,7 +31,7 @@ describe('UserMenuComponent', () => {
     );
 
     TestBed.configureTestingModule({
-      imports: [UserMenuComponent],
+      imports: [UserMenuComponent,NoopAnimationsModule],
       providers: [
         provideRouter([{ path: '**', component: RoutedComponent }]),
         provideLocationMocks(),

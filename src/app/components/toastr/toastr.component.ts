@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input,HostBinding } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  HostBinding,
+  inject,
+  DestroyRef,
+  OnInit,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import {
   trigger,
@@ -8,6 +17,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { ToastrService } from 'src/app/services/toastr.service';
 @Component({
   selector: 'app-toastr',
   standalone: true,
@@ -28,10 +38,26 @@ import {
     ]),
   ],
 })
-export class ToastrComponent {
+export class ToastrComponent implements OnInit {
+  private readonly destroy: DestroyRef = inject(DestroyRef);
+  toastrService = inject(ToastrService);
+  show = false;
   @Input() message = 'no message';
   @Input() type: 'success' | 'error' = 'success';
-  @HostBinding('@appearToastr') get appearToastr(){
-    return null
+  constructor() {}
+  ngOnInit() {
+    this.toastrService.showToastr$
+      .pipe(takeUntilDestroyed(this.destroy))
+      .subscribe((show) => {
+        this.show = show;
+      });
   }
+  // @HostBinding('@appearToastr') get appearToastr() {
+  //   return this.show;
+  // }
+
+  get showToastr$(){
+    return this.toastrService.showToastr$
+  }
+
 }

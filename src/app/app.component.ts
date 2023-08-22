@@ -34,35 +34,6 @@ import { transition, trigger,style, query, group, animate } from '@angular/anima
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations:[
-    // trigger('pageAnimation',[
-    //   transition('*=>*',[
-    //     style({position:'relative'}),
-    //     query(':enter,:leave',[
-    //       style({
-    //         position:'absolute',
-    //         top:0,
-    //         left:0,
-    //         width:'100%'
-    //       }),
-    //       query(':enter',[
-    //         style({
-    //           left:'-100%'
-    //         }),
-    //         // query(':leave',[
-    //         // ])
-    //         group([
-    //           query(':leave',[
-    //             animate('400ms ease-out',style({left:'100%'}))
-    //           ]),
-    //           query(':enter',[
-    //             animate('400ms ease-out',style({left:'0%'}))
-    //           ])
-    //         ])
-
-    //       ])
-    //     ])
-    //   ])
-    // ])
   ]
 })
 export class AppComponent implements OnInit {
@@ -74,22 +45,7 @@ export class AppComponent implements OnInit {
   loadingService = inject(LoadingService);
   context = inject(ChildrenOutletContexts);
   router = inject(Router);
-  animationData$!:Observable<string>;
   constructor() {
-   this.animationData$ =  this.router.events
-      .pipe(
-        filter((data) => data instanceof NavigationStart),
-        //i getContext twice since the route is nested and the data is in the chil of the children of the home route
-        // its like context.getContext(PRIMARY) => returns the routes inside the app.component router outlet, then call children getContext again to get the context of the children
-        map(
-          () =>
-            this.context
-              .getContext(PRIMARY_OUTLET)
-              ?.children?.getContext(PRIMARY_OUTLET)?.route?.snapshot?.data?.[
-              'animation'
-            ] || null
-        )
-      )
   }
   ngOnInit(): void {
     if (this.storage) {
@@ -120,11 +76,4 @@ export class AppComponent implements OnInit {
     return this.userService.getUserData();
   }
 
-  getRouteAnimationData(){
-    return this.context
-    .getContext(PRIMARY_OUTLET)
-    ?.children?.getContext(PRIMARY_OUTLET)?.route?.snapshot?.data?.[
-    'animation'
-  ] 
-  }
 }

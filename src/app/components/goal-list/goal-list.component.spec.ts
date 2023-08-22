@@ -4,11 +4,12 @@ import { TestBed } from '@angular/core/testing';
 import { GameService } from 'src/app/services/game.service';
 import { By } from '@angular/platform-browser';
 import { GoalCardComponent } from '../goal-card/goal-card.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('goal-list.component tests', () => {
   function setup() {
     TestBed.configureTestingModule({
-      imports: [GoalListComponent, GoalCardComponent],
+      imports: [GoalListComponent, GoalCardComponent,NoopAnimationsModule],
       declarations: [],
       providers: [
         {

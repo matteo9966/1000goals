@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ToastrService } from '../services/toastr.service';
-import { EMPTY, TimeoutError, catchError, timeout } from 'rxjs';
+import { EMPTY, TimeoutError, catchError, throwError, timeout } from 'rxjs';
 import { DEFAULT_TIMEOUT } from '../app.config';
 
 const ERROR_MESSAGES = {
