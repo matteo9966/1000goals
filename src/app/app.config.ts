@@ -31,9 +31,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withInterceptors([authorizationInterceptor(['/games/game']),loadingInterceptor,errorInterceptor])),
 
-    { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
-    // { provide: API_BASE, useValue: 'https://one000-game-api-staging.onrender.com/api/v1' },
+    // { provide: API_BASE, useValue: 'http://localhost:5000/api/v1' },
+    { provide: API_BASE, useValue: 'https://one000-game-api.onrender.com/api/v1' },
     { provide: STORAGE, useValue: sessionStorage },
-    { provide: PAGES_BASE, useValue: 'https://192.168.56.1:4200' },
+    // { provide: PAGES_BASE, useValue: 'https://192.168.56.1:4200' }, 
+    { provide: PAGES_BASE, useValue: 'https://matteo9966.github.io/1000goals' },
   ],
 };

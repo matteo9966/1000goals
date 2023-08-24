@@ -48,11 +48,10 @@ export class GoalFormComponent {
       name: this.fb.control('', {
         validators: [
           Validators.required,
-          alphanumericValidator,
           Validators.minLength(this.nameMinLength),
         ],
       }),
-      description: this.fb.control('', { validators: [alphanumericValidator] }),
+      description: this.fb.control('', { validators: [] }),
     });
   }
 
