@@ -20,6 +20,10 @@
 .logo{
     height: var(--user-menu-header-height);
     width: var(--user-menu-header-height);
+    @include m.devices(tablet,true){
+        height:calc(var(--user-menu-header-height) * 0.6);
+        width: calc(var(--user-menu-header-height) * 0.6);
+      }
     margin: auto;
     display: block;
 }
@@ -30,6 +34,13 @@
     padding: 4rem;
     gap: 4rem;
     padding-top: 1rem;
+
+    @include m.devices(tablet,true){
+      grid-template-columns: 1fr 1fr 1fr;
+      padding:2rem;
+      gap:2rem;
+    }
+
 }
 
 app-close-btn{
@@ -45,6 +56,10 @@ app-close-btn{
     gap:1.5rem;
     color:var(--primary-alt);
     padding-block: 4rem;
+    @include m.devices(tablet,true){
+        
+        padding-block: 1.5rem;
+    }
     @include m.glass-bg;
     
     .icon{
@@ -52,6 +67,11 @@ app-close-btn{
         width:5rem;
         height:5rem;
         cursor: pointer;
+
+        @include m.devices(tablet,true){
+            width: 2.5rem;
+            height: 2.5rem;
+        }
     }
 
     .icon-title{

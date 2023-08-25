@@ -1,7 +1,14 @@
+@use '../../../style/mixins' as m;
+
 $close-size:5rem;
 :host{
     width: $close-size;
     height: $close-size;
+
+    @include m.devices(tablet){
+        width: $close-size * 0.7;
+        height: $close-size * 0.7;
+    }
 }
 .line{
     background-color: white;
@@ -18,6 +25,10 @@ $close-size:5rem;
     transform: rotate(45deg);
     transform-origin: center;
     
+    @include m.devices(tablet){
+        width: $close-size * 0.7;
+        height: $close-size * 0.7;
+    }
     
     &::before{
         // display: block;
@@ -27,6 +38,11 @@ $close-size:5rem;
         @extend .line;
         
         transform-origin: center;
+        @include m.devices(tablet){
+            width: $close-size * 0.7;
+            
+        }
+        
     }
     &::after{
         width:0.2rem; 
@@ -36,6 +52,12 @@ $close-size:5rem;
         position: absolute;
         inset: 0;
         margin: auto;
+
+        @include m.devices(tablet){
+           
+            height: $close-size * 0.7;
+        }
+        
         
     }
 }

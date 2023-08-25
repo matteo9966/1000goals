@@ -11,7 +11,6 @@
   outline: 1px solid var(--border-primary-color);
   border-radius: var(--border-radius);
   // box-shadow: inset 0px 0px 15px 2px rgba(202, 202, 202, 0.78);
-
 }
 
 @mixin font-huge {
@@ -70,4 +69,45 @@
   box-shadow: inset 0px 0px 15px 1px rgba(202, 202, 202, 0.78);
   border: 1px solid rgba(202, 202, 202, 0.24);
   border-radius: var(--border-radius);
+}
+
+//this mixin is internal don't use outside this file
+@mixin breakpoints($breakpoint) {
+  @if $breakpoint == laptop {
+    @media only screen and (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media only screen and (max-width: 920px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 481px) {
+      @content;
+    }
+  }
+  @if $breakpoint == mobile-small {
+    @media only screen and (max-width: 325px) {
+      @content;
+    }
+  }
+}
+
+@mixin devices($breakpoint, $landscape: false) {
+  //the name of the mixin is devices
+
+  @if $landscape==true {
+    @media (orientation: landscape) {
+      @include breakpoints($breakpoint) {
+        @content;
+      }
+    }
+  } @else {
+    @include breakpoints($breakpoint) {
+      @content;
+    }
+  }
 }

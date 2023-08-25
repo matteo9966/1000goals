@@ -4,6 +4,12 @@ $grid-gap:1.5rem;
 .dashboard-body{
     padding-top: 4rem;
     padding-bottom: 6rem;
+    
+    @include m.devices(tablet,true){
+        
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
 }
 .stats-section{
     display: grid;
@@ -12,11 +18,13 @@ $grid-gap:1.5rem;
                          "pie pie .";
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    // height: 18rem;
+    
+    @include m.devices(tablet,true){
+        grid-template-areas: ". pie  score .";
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;  
+    }
     width: 100%;
-    // &>*{
-    //    @include m.styled-borders;
-    // }
 
 }
 

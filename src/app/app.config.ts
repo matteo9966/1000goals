@@ -36,5 +36,6 @@ export const appConfig: ApplicationConfig = {
     { provide: STORAGE, useValue: sessionStorage },
     // { provide: PAGES_BASE, useValue: 'https://192.168.56.1:4200' }, 
     { provide: PAGES_BASE, useValue: 'https://matteo9966.github.io/1000goals' },
+
   ],
 };
