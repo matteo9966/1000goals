@@ -69,7 +69,6 @@ export class SignupPageComponent implements OnInit {
 
   onClickSignup() {
     if (this.disableSignupBtn) return;
-    this.disableSignupBtn = true;
     this.form.updateValueAndValidity();
     Object.values(this.form.controls).forEach((control) => {
       control.markAsTouched();
