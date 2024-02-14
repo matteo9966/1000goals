@@ -25,30 +25,29 @@ describe('InputTextComponent', () => {
   it('should show the eye if it is of type password', () => {
     component.type = 'password';
     fixture.detectChanges();
-    let eye = debugElement.query(By.css('.eye-container'));
+    const eye = debugElement.query(By.css('.eye-container'));
     expect(eye).toBeTruthy();
   });
 
   it('should hide the eye if it is of type text', () => {
     component.type = 'text';
     fixture.detectChanges();
-    let eye = debugElement.query(By.css('.eye-container'));
+    const eye = debugElement.query(By.css('.eye-container'));
     expect(eye).toBeFalsy();
   });
 
   it('call the changeFunction passed to registerOnChange when i update the value', () => {
-    let spy = jasmine.createSpy('changeFunction');
+    const spy = jasmine.createSpy('changeFunction');
     component.registerOnChange(spy);
     component.value = 'test';
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
-  
   });
 
-it('should show an errorLabel if it is not null',()=>{
-  component.errorLabel = 'test';
-  fixture.detectChanges();
-  let errorLabel = debugElement.query(By.css('.error-message'));
-  expect(errorLabel).toBeTruthy();
-})
+  it('should show an errorLabel if it is not null', () => {
+    component.errorLabel = 'test';
+    fixture.detectChanges();
+    const errorLabel = debugElement.query(By.css('.error-message'));
+    expect(errorLabel).toBeTruthy();
+  });
 });

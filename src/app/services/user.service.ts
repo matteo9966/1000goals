@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Requests, Responses } from '1000-goals-types';
-import { BehaviorSubject, EMPTY, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, tap } from 'rxjs';
 import { STORAGE } from '../app.config';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 import { HttpClient } from '@angular/common/http';
@@ -43,7 +43,9 @@ export class UserService {
     try {
       const stringifiedData = JSON.stringify(userData);
       this.storage.setItem('userData', stringifiedData);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     this._userData = userData;
   }
 
@@ -99,12 +101,11 @@ export class UserService {
       name: name,
     };
 
-    return this.http.delete<Responses.InsertReachedGoalResponse & {data:{deleted:boolean}}>(
-      this.insertReachedGoalURL,
-      {
-        body: request,
-      }
-    );
+    return this.http.delete<
+      Responses.InsertReachedGoalResponse & { data: { deleted: boolean } }
+    >(this.insertReachedGoalURL, {
+      body: request,
+    });
   }
 
   changePassword(password: string, username: string) {

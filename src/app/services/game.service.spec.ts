@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameService } from './game.service';
 import { UserService } from './user.service';
 import { ToastrService } from './toastr.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { API_BASE } from '../app.config';
 import { Requests, User } from '1000-goals-types';
 import { Observable } from 'rxjs';
@@ -11,7 +11,6 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { InsertGameResponse } from '1000-goals-types/src/Responses';
-import { GameLookupPlayers } from '1000-goals-types/src/Game.interface';
 import { LoginResponseBody } from '1000-goals-types/src/Responses/loginResponse';
 
 describe('GameService', () => {
@@ -99,7 +98,9 @@ describe('GameService', () => {
         User,
         'password'
       >;
-      userService.getUserData.and.returnValues(user as unknown as LoginResponseBody)
+      userService.getUserData.and.returnValues(
+        user as unknown as LoginResponseBody
+      );
 
       const responseData: InsertGameResponse = {
         data: {} as InsertGameResponse['data'],
@@ -121,7 +122,5 @@ describe('GameService', () => {
       request.flush(responseData);
       httpTestingController.verify();
     });
-
-
   });
 });

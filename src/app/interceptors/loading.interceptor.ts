@@ -1,15 +1,12 @@
-import { Injectable, inject } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { inject } from '@angular/core';
 import {
   HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HttpInterceptorFn,
   HttpHandlerFn,
 } from '@angular/common/http';
-import { Observable, finalize } from 'rxjs';
+import { finalize } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
-
 
 export const loadingInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,

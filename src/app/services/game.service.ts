@@ -5,7 +5,7 @@ import { ROUTES } from '1000-goals-types/lib';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE } from '../app.config';
 import { ToastrService } from './toastr.service';
-import { EMPTY, concatMap, of, tap } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { RequiredOnlyNameAndPointsGoalType } from '1000-goals-types/src/Requests/InsertProposedGoalsRequest';
 
 @Injectable({
@@ -27,13 +27,14 @@ export class GameService {
     this.insertUserURL = apiBase + ROUTES.games.base + ROUTES.games.insertUser;
     this.insertProposedGoalURL =
       apiBase + ROUTES.games.base + ROUTES.games.insertProposedGoals;
-    this.upvoteProposedGoalURL =  apiBase + ROUTES.games.base + ROUTES.games.upvoteGoal;
+    this.upvoteProposedGoalURL =
+      apiBase + ROUTES.games.base + ROUTES.games.upvoteGoal;
   }
   createGame(gameBody: Requests.InsertGameRequest['game']) {
-    const user = this.userService.getUserData(); 
+    const user = this.userService.getUserData();
     const username = user?.user?.name;
 
-    console.log(username)
+    console.log(username);
     if (!username) {
       this.toastrService.setToastrType('error');
       this.toastrService.setToastrMessage('User is not logged in');
@@ -49,7 +50,7 @@ export class GameService {
       username: username,
     };
 
- console.log({requestBody})
+    console.log({ requestBody });
 
     return this.http
       .post<Responses.InsertGameResponse>(this.createGameURL, requestBody)
@@ -104,6 +105,9 @@ export class GameService {
       username,
     };
 
-    return this.http.patch<Responses.UpvoteGoalResponse>(this.upvoteProposedGoalURL,upvoteRequestBody);
+    return this.http.patch<Responses.UpvoteGoalResponse>(
+      this.upvoteProposedGoalURL,
+      upvoteRequestBody
+    );
   }
 }
